@@ -9,10 +9,10 @@ Proyecto desarrollado para la materia **Desarrollo de Sistemas Web Front End (Te
 
 | # | Integrante | Rol en el Proyecto | Ciudad | GitHub |
 |---|------------|--------------------|--------|--------|
-| 1 | **Alex Rivera** | Frontend & UI Specialist | CABA | [@alexrivera-ui](https://github.com) |
-| 2 | **Sofía Martínez** | JavaScript Developer & Logic Architect | Córdoba | [@sofiamartinez-dev](https://github.com) |
-| 3 | **Lucas Benítez** | Layout & SEO Architect | Rosario | [@lucasbenitez-seo](https://github.com) |
-| 4 | **Elena Gómez** | Accessibility & QA Engineer | Mendoza | [@elenagomez-qa](https://github.com) |
+| 1 | **Guillermo Escobar** | Frontend & UI Specialist | CABA | [@gescobar-ui](https://github.com) |
+| 2 | **José Luis Galvis** | JavaScript Developer & Logic Architect | Córdoba | [@jlgalvis-dev](https://github.com) |
+| 3 | **Orlando Sposto** | Layout & SEO Architect | Rosario | [@osposto](https://github.com/osposto) |
+| 4 | **Adriana Van Den Dooren** | Accessibility & QA Engineer | Mendoza | [@avandendooren-qa](https://github.com) |
 
 ---
 
@@ -39,10 +39,10 @@ El proyecto se encuentra publicado y listo para su despliegue continuo en **Verc
 ```text
 TP1/
 ├── index.html               # Portada principal y catálogo de integrantes
-├── perfil-1.html            # Perfil individual: Alex Rivera
-├── perfil-2.html            # Perfil individual: Sofía Martínez
-├── perfil-3.html            # Perfil individual: Lucas Benítez
-├── perfil-4.html            # Perfil individual: Elena Gómez
+├── perfil-1.html            # Perfil individual: Guillermo Escobar
+├── perfil-2.html            # Perfil individual: José Luis Galvis
+├── perfil-3.html            # Perfil individual: Orlando Sposto
+├── perfil-4.html            # Perfil individual: Adriana Van Den Dooren
 ├── bitacora.html            # Bitácora cronológica de desarrollo y acuerdos
 ├── MASTER_OUTLINE.md        # Esquema maestro de requerimientos
 ├── README.md                # Documentación técnica completa
@@ -53,10 +53,10 @@ TP1/
 │   └── perfiles.js          # Lógica interactiva única para cada uno de los 4 perfiles
 └── img/
     ├── avatares/
-    │   ├── avatar-1.svg     # Avatar ilustrado de Alex Rivera
-    │   ├── avatar-2.svg     # Avatar ilustrado de Sofía Martínez
-    │   ├── avatar-3.svg     # Avatar ilustrado de Lucas Benítez
-    │   └── avatar-4.svg     # Avatar ilustrado de Elena Gómez
+    │   ├── avatar-1.svg     # Avatar ilustrado de Guillermo Escobar
+    │   ├── avatar-2.svg     # Avatar ilustrado de Adriana Van Den Dooren
+    │   ├── avatar-3.svg     # Avatar ilustrado de Orlando Sposto
+    │   └── avatar-4.svg     # Avatar ilustrado de José Luis Galvis
     └── icons/
         ├── arrow-left.svg
         ├── arrow-right.svg

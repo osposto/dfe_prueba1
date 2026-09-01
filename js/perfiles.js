@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     PERFIL 1: Inspector interactivo de Discografía (Alex Rivera)
+     PERFIL 1: Inspector interactivo de Discografía (Guillermo Escobar)
      -------------------------------------------------------------------------- */
   const discButtons = document.querySelectorAll('.disc-btn');
   const discDisplay = document.getElementById('discDetailsDisplay');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     PERFIL 2: Inspector de Competencias y Dominio (Sofía Martínez)
+     PERFIL 2: Inspector de Competencias y Dominio (José Luis Galvis)
      -------------------------------------------------------------------------- */
   const skillsInspectorGrid = document.getElementById('skillsInspectorGrid');
 
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     PERFIL 3: Modal de Ficha Cinematográfica (Lucas Benítez)
+     PERFIL 3: Modal de Ficha Cinematográfica (Orlando Sposto)
      -------------------------------------------------------------------------- */
   const movieCards = document.querySelectorAll('.movie-inspect-card');
   const movieModal = document.getElementById('movieModal');
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --------------------------------------------------------------------------
-     PERFIL 4: Mini Terminal CLI Interactiva (Elena Gómez)
+     PERFIL 4: Mini Terminal CLI Interactiva (Adriana Van Den Dooren)
      -------------------------------------------------------------------------- */
   const terminalForm = document.getElementById('terminalForm');
   const cliInput = document.getElementById('cliInput');
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       help: () => `
 Comandos disponibles en DevCore CLI:
   • help      - Muestra esta lista de comandos.
-  • skills    - Muestra las habilidades y herramientas de Elena Gómez.
+  • skills    - Muestra las habilidades y herramientas de Adriana Van Den Dooren.
   • bio       - Breve biografía y enfoque profesional.
   • contact   - Información de contacto y redes profesionales.
   • movies    - Películas favoritas comentadas.
@@ -390,15 +390,15 @@ Comandos disponibles en DevCore CLI:
   4. ARIA Roles, Live Regions & Keyboard Trap Avoidance
       `,
       bio: () => `
-Elena Gómez (27 años, Mendoza). QA & Accessibility Engineer en DevCore.
+Adriana Van Den Dooren (27 años, Mendoza). QA & Accessibility Engineer en DevCore.
 Apasionada por la inclusión digital y la construcción de experiencias accesibles
 donde cualquier usuario pueda navegar de forma intuitiva, rápida y sin barreras.
       `,
       contact: () => `
 [CANALES DE CONTACTO]
-  • Email: elena.gomez@devcore.local
-  • GitHub: https://github.com/elenagomez-qa
-  • LinkedIn: linkedin.com/in/elena-gomez-a11y
+  • Email: adriana.vdooren@devcore.local
+  • GitHub: https://github.com/adrianavdooren-qa
+  • LinkedIn: linkedin.com/in/adriana-vandendooren-a11y
       `,
       movies: () => `
 [CINE FAVORITO]
@@ -436,7 +436,7 @@ donde cualquier usuario pueda navegar de forma intuitiva, rápida y sin barreras
         responseText = `Comando no reconocido: "${rawCmd}". Escribe "help" para ver los comandos disponibles.`;
       }
 
-      terminalHistory.textContent += `\n\nelena@tp1:~$ ${rawCmd}\n${responseText.trim()}`;
+      terminalHistory.textContent += `\n\nadriana@tp1:~$ ${rawCmd}\n${responseText.trim()}`;
       cliInput.value = '';
 
       if (terminalBody) {
@@ -446,4 +446,3 @@ donde cualquier usuario pueda navegar de forma intuitiva, rápida y sin barreras
   }
 
 });
-

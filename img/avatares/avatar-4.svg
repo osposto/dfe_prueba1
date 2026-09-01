@@ -5,12 +5,34 @@
       <stop offset="100%" stop-color="#C2410C" />
     </linearGradient>
   </defs>
+  <!-- Background Circle -->
   <circle cx="60" cy="60" r="56" fill="url(#bg4)" stroke="#FB923C" stroke-width="4"/>
+  
+  <!-- Shoulders / Clothes -->
   <path d="M28 104 C32 80 44 72 60 72 C76 72 88 80 92 104 Z" fill="#1E293B" stroke="#FB923C" stroke-width="2"/>
-  <circle cx="60" cy="50" r="21" fill="#FFEDD5"/>
-  <path d="M38 48 C36 32 46 22 60 22 C74 22 84 32 82 48 C82 52 80 58 78 60 C78 52 74 40 60 40 C46 40 42 52 42 60 C40 58 38 52 38 48 Z" fill="#0F172A"/>
+  
+  <!-- Headphones Band (Optional cool dev accessory) -->
+  <path d="M35 48 C35 28 46 20 60 20 C74 20 85 28 85 48" stroke="#334155" stroke-width="4" stroke-linecap="round" fill="none"/>
+  
+  <!-- Head -->
+  <circle cx="60" cy="50" r="22" fill="#FED7AA"/>
+  
+  <!-- Male Short Hair (Modern Crop / Spiky) -->
+  <path d="M38 44 C38 28 50 22 60 22 C70 22 82 28 82 44 C78 38 72 34 60 34 C48 34 42 38 38 44 Z" fill="#1E293B"/>
+  <path d="M46 25 L50 20 L56 24 L62 19 L68 24 L74 21 L76 26" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Eyes -->
   <circle cx="52" cy="48" r="2.5" fill="#0F172A"/>
   <circle cx="68" cy="48" r="2.5" fill="#0F172A"/>
-  <path d="M55 58 Q60 63 65 58" stroke="#0F172A" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- Eyebrows -->
+  <path d="M48 43 Q52 41 56 43" stroke="#1E293B" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M64 43 Q68 41 72 43" stroke="#1E293B" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- Smile -->
+  <path d="M54 58 Q60 64 66 58" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  
+  <!-- Headphone Pads -->
+  <rect x="33" y="44" width="7" height="14" rx="3.5" fill="#FB923C"/>
+  <rect x="80" y="44" width="7" height="14" rx="3.5" fill="#FB923C"/>
 </svg>
-
