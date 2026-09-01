@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bitácora de Desarrollo del equipo DevCore - Registro de acuerdos, decisiones técnicas, desafíos y soluciones aplicadas en el TP1 Front End 2026.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Bitácora de Desarrollo | DevCore TP1</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Ir a la página principal de DevCore">
+        <span class="brand-badge">TP1</span>
+        <span>DevCore</span>
+      </a>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">
+              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="bitacora.html" class="nav-link active" aria-current="page">
+              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Bitácora</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- HERO DE LA BITÁCORA -->
+      <section class="hero" aria-labelledby="bitacora-heading" style="text-align: left; padding: 1.5rem 0 2.5rem 0;">
+        <span class="badge badge-emerald">Historial Técnico & Proceso Colaborativo</span>
+        <h1 id="bitacora-heading" class="hero-title" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+          Bitácora de Desarrollo y Acuerdos
+        </h1>
+        <p class="hero-description" style="margin-left: 0; max-width: 800px;">
+          Registro cronológico y exhaustivo de la evolución del proyecto: decisiones de arquitectura, desafíos técnicos surgidos durante la integración colaborativa y las soluciones aplicadas para garantizar código limpio y accesible.
+        </p>
+      </section>
+
+      <!-- TIMELINE DE ENTRADAS -->
+      <section aria-label="Entradas cronológicas de la bitácora">
+        <div class="timeline">
+          
+          <!-- ENTRADA 1: SETUP Y SISTEMA DE DISEÑO -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 1 • ARQUITECTURA VISUAL & SETUP</div>
+              <h2 class="timeline-title">1. Definición del Sistema de Diseño, Paleta y Estructura Base</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Acordamos unánimemente prescindir de frameworks externos (Bootstrap/Tailwind) para consolidar el dominio de <strong>CSS3 nativo y HTML5 semántico</strong>. Establecimos una paleta <em>Dark Theme</em> sobria basada en la escala de Slate (`#0F172A`, `#1E293B`) con acentos en Sky Blue (`#38BDF8`) y Emerald (`#34D399`), centralizados mediante Custom Properties (`:root`) en una única hoja de estilos unificada (`css/styles.css`).
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  Alineación tipográfica y riesgo de inconsistencia en resoluciones móviles reducidas (menos de 400px de ancho) debido a tamaños fijos de contenedores.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Implementamos un reset universal con <code>box-sizing: border-box</code> y adoptamos un enfoque estrictamente <strong>Mobile-First</strong>, empleando tipografías escalables (Google Fonts: <em>Inter</em> y <em>JetBrains Mono</em>) y unidades relativas (<code>rem</code> y <code>%</code>).
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ENTRADA 2: MAQUETACIÓN PORTADA Y BÚSQUEDA DINÁMICA -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 2 • PORTADA & FILTRADO JS</div>
+              <h2 class="timeline-title">2. Maquetación Semántica de Portada y Motor de Filtrado en Tiempo Real</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Estructuramos <code>index.html</code> con etiquetas semánticas (`header`, `main`, `section`, `article`, `footer`) y diseñamos un grid responsivo para las 4 tarjetas de los integrantes. Para la interactividad de la portada, desarrollamos en <code>js/main.js</code> un sistema de filtrado en vivo que escucha eventos de entrada y botones de selección rápida.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  Las comparaciones de texto fallaban ante acentos y mayúsculas/minúsculas (ej. "accesibilidad" vs "Accesibilidad"), y los lectores de pantalla no se enteraban de los cambios en la cantidad de tarjetas visibles.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Creamos una función de normalización mediante <code>normalize('NFD').replace(/[\u0300-\u036f]/g, '')</code> y agregamos la región accesible <code>aria-live="polite"</code> en el contador de resultados para notificar cambios dinámicamente sin interrumpir al usuario.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ENTRADA 3: PERFILES INDIVIDUALES Y FUNCIONALIDADES ÚNICAS -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 3 • PERFILES INDIVIDUALES & JAVASCRIPT</div>
+              <h2 class="timeline-title">3. Creación de Perfiles y Desarrollo de las 4 Experiencias Interactivas</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Creamos los archivos individuales en la raíz (<code>perfil-1.html</code> a <code>perfil-4.html</code>) garantizando que cada uno posea todos los datos obligatorios (foto, nombre, ciudad, edad, 4 habilidades, 3 películas y 3 discos). Cada perfil implementa una interacción JS distintiva:
+                </p>
+                <ul style="margin-top: 0.5rem; padding-left: 1.25rem;">
+                  <li><strong>Perfil 1:</strong> Inspector dinámico de discografía con tracklist interactivo.</li>
+                  <li><strong>Perfil 2:</strong> Panel de inspección y barras de progreso de competencias.</li>
+                  <li><strong>Perfil 3:</strong> Modal accesible con ficha técnica de cine y citas célebres.</li>
+                  <li><strong>Perfil 4:</strong> Mini terminal de comandos CLI interactiva estilo retro.</li>
+                </ul>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  El modal del Perfil 3 no bloqueaba el scroll de fondo y no permitía ser cerrado mediante teclado (tecla Escape), mientras que el formulario de la terminal en el Perfil 4 realizaba submits predeterminados recargando la página.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  En <code>js/perfiles.js</code> añadimos listeners para la tecla <code>Escape</code>, gestionamos el overflow del body al abrir el modal y utilizamos <code>event.preventDefault()</code> en el submit de la terminal CLI junto con scroll automático hacia el último output generado.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ENTRADA 4: REVISIÓN DE ACCESIBILIDAD Y RESPONSIVE -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 4 • VALIDACIÓN & QA</div>
+              <h2 class="timeline-title">4. Auditoría de Accesibilidad (a11y), Contraste y Pruebas en Breakpoints</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Realizamos pruebas de renderizado en tres anchos de pantalla fundamentales: <strong>400px</strong> (móvil compacto), <strong>900px</strong> (tablet) y <strong>1200px</strong> (escritorio), asegurando navegación bidireccional continua sin requerir el botón "Atrás" del navegador.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  En resoluciones intermedias (cercanas a 850px), las tarjetas de integrantes generaban un espacio en blanco asimétrico si se forzaba un grid estático de 2 columnas.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Ajustamos las reglas de CSS Grid mediante media queries combinadas con <code>minmax</code> fluido, y comprobamos que todos los elementos interactivos cuenten con <code>:focus-visible</code> y un ratio de contraste de texto superior a 4.5:1 (conforme a WCAG 2.1 AA).
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ENTRADA 5: MICRO-INTERACCIONES DINÁMICAS AL MOVER EL MOUSE -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 5 • MICRO-INTERACCIONES DINÁMICAS</div>
+              <h2 class="timeline-title">5. Implementación de Efectos 3D Tilt, Spotlight y Resplandor al Desplazar el Mouse</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Para enriquecer la experiencia sensorial sin sobrecargar el rendimiento, incorporamos un sistema de <strong>3D Tilt y Spotlight reactivo al cursor</strong>. Las tarjetas calculan en tiempo real el ángulo de perspectiva (`rotateX`, `rotateY`) y las coordenadas CSS `--mouse-x` y `--mouse-y` para proyectar un halo radial suave sobre las superficies y bordes. En la portada, el hero cuenta con un resplandor ambiental amortiguado que acompaña el movimiento del mouse.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  El cálculo continuo de posiciones en el evento `mousemove` podía causar sobrecarga en la tasa de refresco (jank) o afectar a usuarios sensibles al movimiento en dispositivos móviles y táctiles.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Optimizamos el render loop envolviendo las transformaciones en <code>requestAnimationFrame</code>, desactivamos los cálculos en dispositivos táctiles mediante el media query <code>(pointer: coarse)</code> y garantizamos total accesibilidad desactivando cualquier animación si el sistema tiene activado <code>prefers-reduced-motion: reduce</code>.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- NAVEGACIÓN INFERIOR -->
+      <nav class="page-navigation-footer" aria-label="Navegación de retorno">
+        <a href="index.html" class="btn btn-secondary">
+          <span aria-hidden="true">&larr;</span>
+          <span>Volver a la Portada</span>
+        </a>
+
+        <div class="profile-nav-buttons">
+          <a href="perfil-1.html" class="btn btn-primary">
+            <span>Explorar Integrantes (Perfil 1)</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>DevCore • TP1 Front-End</h4>
+          <p>Proyecto académico colaborativo para la materia Desarrollo de Sistemas Web Front End 2026.</p>
+        </div>
+        
+        <div>
+          <h5 class="footer-links-title">Navegación</h5>
+          <ul class="footer-nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="bitacora.html">Bitácora de Desarrollo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-links-title">Perfiles</h5>
+          <ul class="footer-nav">
+            <li><a href="perfil-1.html">Alex Rivera</a></li>
+            <li><a href="perfil-2.html">Sofía Martínez</a></li>
+            <li><a href="perfil-3.html">Lucas Benítez</a></li>
+            <li><a href="perfil-4.html">Elena Gómez</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Equipo DevCore. Todos los derechos reservados.</p>
+        <p>HTML5 • CSS3 • JavaScript ES6+ Vanilla</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+

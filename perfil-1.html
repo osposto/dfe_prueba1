@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil profesional de Alex Rivera - Frontend & UI Specialist. TP1 Desarrollo Web Front End 2026.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Perfil: Alex Rivera | DevCore</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Ir a la página principal de DevCore">
+        <span class="brand-badge">TP1</span>
+        <span>DevCore</span>
+      </a>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">
+              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="bitacora.html" class="nav-link">
+              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Bitácora</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- HERO DE PERFIL -->
+      <section class="profile-hero" aria-labelledby="profile-name">
+        <div class="profile-hero-content">
+          <img src="img/avatares/avatar-1.svg" alt="Avatar oficial de Alex Rivera" class="profile-avatar-lg">
+          <div class="profile-header-details">
+            <span class="badge">Integrante #1</span>
+            <h1 id="profile-name">Alex Rivera</h1>
+            <p class="member-role">Frontend & UI Specialist</p>
+            
+            <div class="profile-meta-tags">
+              <span class="meta-item">📍 Ciudad Autónoma de Buenos Aires</span>
+              <span class="meta-item">🎂 24 años</span>
+              <span class="meta-item">💻 Enfoque: Diseño UI & Maquetación CSS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIONES DE REQUISITOS (HABILIDADES, PELÍCULAS, DISCOS) -->
+      <div class="profile-grid">
+        
+        <!-- 4 HABILIDADES (LISTA DESORDENADA) -->
+        <section class="card" aria-labelledby="skills-heading">
+          <h2 id="skills-heading" class="profile-card-title">
+            <img src="img/icons/sparkles.svg" alt="" class="card-icon" aria-hidden="true">
+            <span>Habilidades Técnicas</span>
+          </h2>
+          <ul class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index">•</span>
+              <div class="item-text">
+                <strong>CSS Grid & Flexbox Avanzado</strong>
+                <span>Maquetación responsive multidimensional y fluida.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">•</span>
+              <div class="item-text">
+                <strong>Diseño UI/UX con Figma</strong>
+                <span>Wireframing, prototipado y sistemas de diseño atómico.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">•</span>
+              <div class="item-text">
+                <strong>Mobile-First Architecture</strong>
+                <span>Estrategia de desarrollo optimizada para dispositivos móviles.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">•</span>
+              <div class="item-text">
+                <strong>HTML5 Semántico</strong>
+                <span>Jerarquía de etiquetas para SEO y accesibilidad estructural.</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3 PELÍCULAS FAVORITAS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="movies-heading">
+          <h2 id="movies-heading" class="profile-card-title">
+            <img src="img/icons/movie.svg" alt="" class="card-icon" aria-hidden="true">
+            <span>Películas Favoritas</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index">1</span>
+              <div class="item-text">
+                <strong>Blade Runner 2049</strong>
+                <span>Dir. Denis Villeneuve (2017) • Estética cyberpunk y diseño visual sobresaliente.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">2</span>
+              <div class="item-text">
+                <strong>Interstellar</strong>
+                <span>Dir. Christopher Nolan (2014) • Exploración espacial, relatividad y banda sonora épica.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">3</span>
+              <div class="item-text">
+                <strong>The Matrix</strong>
+                <span>Lana y Lilly Wachowski (1999) • Obra cumbre de ciencia ficción y filosofía digital.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 3 DISCOS FAVORITOS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="music-heading">
+          <h2 id="music-heading" class="profile-card-title">
+            <img src="img/icons/disc.svg" alt="" class="card-icon" aria-hidden="true">
+            <span>Discos Favoritos</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index">1</span>
+              <div class="item-text">
+                <strong>Random Access Memories</strong>
+                <span>Daft Punk (2013) • Obra maestra del synth-funk y producción analógica.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">2</span>
+              <div class="item-text">
+                <strong>Currents</strong>
+                <span>Tame Impala (2015) • Psicodelia moderna, sintetizadores y arreglos introspectivos.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index">3</span>
+              <div class="item-text">
+                <strong>OK Computer</strong>
+                <span>Radiohead (1997) • Innovación sónica sobre el aislamiento tecnológico.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+      </div>
+
+      <!-- INTERACCIÓN EXCLUSIVA JS (PERFIL 1): EXPLORADOR DE DISCOGRAFÍA -->
+      <section class="interactive-section" aria-labelledby="interactive-heading">
+        <div class="interactive-header">
+          <h2 id="interactive-heading">
+            <img src="img/icons/disc.svg" alt="" class="card-icon" style="width:24px; height:24px;" aria-hidden="true">
+            <span>Inspector Interactivo de Discografía</span>
+          </h2>
+          <p class="interactive-subtitle">Haz clic en cada álbum para explorar su ficha técnica detallada y tracklist:</p>
+        </div>
+
+        <div class="disc-selector">
+          <button type="button" class="disc-btn active" data-disc="0">
+            <div>
+              <strong>Random Access Memories</strong>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Daft Punk (2013)</div>
+            </div>
+            <span class="badge">Explorar</span>
+          </button>
+          
+          <button type="button" class="disc-btn" data-disc="1">
+            <div>
+              <strong>Currents</strong>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Tame Impala (2015)</div>
+            </div>
+            <span class="badge">Explorar</span>
+          </button>
+          
+          <button type="button" class="disc-btn" data-disc="2">
+            <div>
+              <strong>OK Computer</strong>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Radiohead (1997)</div>
+            </div>
+            <span class="badge">Explorar</span>
+          </button>
+        </div>
+
+        <div id="discDetailsDisplay" class="disc-details-panel" aria-live="polite">
+          <!-- Cargado dinámicamente por js/perfiles.js -->
+        </div>
+      </section>
+
+      <!-- NAVEGACIÓN BIDIRECCIONAL -->
+      <nav class="page-navigation-footer" aria-label="Navegación entre perfiles">
+        <a href="index.html" class="btn btn-secondary">
+          <span aria-hidden="true">&larr;</span>
+          <span>Volver a la Portada</span>
+        </a>
+
+        <div class="profile-nav-buttons">
+          <a href="bitacora.html" class="btn btn-secondary">
+            <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+            <span>Ver Bitácora</span>
+          </a>
+          <a href="perfil-2.html" class="btn btn-primary">
+            <span>Siguiente Perfil (Sofía Martínez)</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Equipo DevCore. Perfil 1: Alex Rivera.</p>
+        <p><a href="index.html">Inicio</a> • <a href="bitacora.html">Bitácora</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/perfiles.js"></script>
+</body>
+</html>
+

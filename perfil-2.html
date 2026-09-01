@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil profesional de Sofía Martínez - JavaScript Developer. TP1 Desarrollo Web Front End 2026.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Perfil: Sofía Martínez | DevCore</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Ir a la página principal de DevCore">
+        <span class="brand-badge">TP1</span>
+        <span>DevCore</span>
+      </a>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">
+              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="bitacora.html" class="nav-link">
+              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Bitácora</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- HERO DE PERFIL -->
+      <section class="profile-hero" aria-labelledby="profile-name">
+        <div class="profile-hero-content">
+          <img src="img/avatares/avatar-2.svg" alt="Avatar oficial de Sofía Martínez" class="profile-avatar-lg">
+          <div class="profile-header-details">
+            <span class="badge badge-emerald">Integrante #2</span>
+            <h1 id="profile-name">Sofía Martínez</h1>
+            <p class="member-role" style="color: var(--accent-emerald);">JavaScript Developer & Logic Architect</p>
+            
+            <div class="profile-meta-tags">
+              <span class="meta-item">📍 Córdoba Capital, Argentina</span>
+              <span class="meta-item">🎂 26 años</span>
+              <span class="meta-item">💻 Enfoque: JavaScript ES6+, DOM y APIs Nativas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIONES DE REQUISITOS (HABILIDADES, PELÍCULAS, DISCOS) -->
+      <div class="profile-grid">
+        
+        <!-- 4 HABILIDADES (LISTA DESORDENADA) -->
+        <section class="card" aria-labelledby="skills-heading">
+          <h2 id="skills-heading" class="profile-card-title">
+            <img src="img/icons/sparkles.svg" alt="" class="card-icon" style="color: var(--accent-emerald);" aria-hidden="true">
+            <span>Habilidades Técnicas</span>
+          </h2>
+          <ul class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">•</span>
+              <div class="item-text">
+                <strong>JavaScript Moderno (ES6+)</strong>
+                <span>Módulos, promesas, async/await, desestructuración y proxies.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Manipulación Eficiente del DOM</strong>
+                <span>Event delegation, mutaciones reactivas y optimización de repaints.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Web APIs Nativas & Fetch</strong>
+                <span>LocalStorage, SessionStorage, IntersectionObserver y llamadas asíncronas.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Control de Versiones con Git</strong>
+                <span>Branching model, resolución de conflictos y flujo colaborativo.</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3 PELÍCULAS FAVORITAS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="movies-heading">
+          <h2 id="movies-heading" class="profile-card-title">
+            <img src="img/icons/movie.svg" alt="" class="card-icon" style="color: var(--accent-emerald);" aria-hidden="true">
+            <span>Películas Favoritas</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">1</span>
+              <div class="item-text">
+                <strong>Arrival</strong>
+                <span>Dir. Denis Villeneuve (2016) • Lingüística extraterrestre, tiempo no lineal y empatía.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">2</span>
+              <div class="item-text">
+                <strong>Inception</strong>
+                <span>Dir. Christopher Nolan (2010) • Arquitectura onírica y niveles de lógica anidada.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">3</span>
+              <div class="item-text">
+                <strong>Ex Machina</strong>
+                <span>Dir. Alex Garland (2014) • Test de Turing, conciencia sintética y ética tecnológica.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 3 DISCOS FAVORITOS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="music-heading">
+          <h2 id="music-heading" class="profile-card-title">
+            <img src="img/icons/disc.svg" alt="" class="card-icon" style="color: var(--accent-emerald);" aria-hidden="true">
+            <span>Discos Favoritos</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">1</span>
+              <div class="item-text">
+                <strong>Discovery</strong>
+                <span>Daft Punk (2001) • Ritmos house franceses, vocoders y visuales anime legendarios.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">2</span>
+              <div class="item-text">
+                <strong>Abbey Road</strong>
+                <span>The Beatles (1969) • Armonías magistrales y el icónico medley final de rock.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-emerald); background-color: rgba(52, 211, 153, 0.1);">3</span>
+              <div class="item-text">
+                <strong>Plastic Beach</strong>
+                <span>Gorillaz (2010) • Fusión electrónica con concepto ecológico y colaboraciones globales.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+      </div>
+
+      <!-- INTERACCIÓN EXCLUSIVA JS (PERFIL 2): INSPECTOR DE COMPETENCIAS -->
+      <section class="interactive-section" aria-labelledby="interactive-heading">
+        <div class="interactive-header">
+          <h2 id="interactive-heading">
+            <img src="img/icons/sparkles.svg" alt="" class="card-icon" style="width:24px; height:24px; color:var(--accent-emerald);" aria-hidden="true">
+            <span>Inspector de Competencias y Nivel de Dominio</span>
+          </h2>
+          <p class="interactive-subtitle">Haz clic en cada tarjeta para desplegar el desglose de métricas, herramientas y casos prácticos:</p>
+        </div>
+
+        <div class="skills-inspector-grid" id="skillsInspectorGrid">
+          <!-- Generado / interactivo vía js/perfiles.js -->
+        </div>
+      </section>
+
+      <!-- NAVEGACIÓN BIDIRECCIONAL -->
+      <nav class="page-navigation-footer" aria-label="Navegación entre perfiles">
+        <a href="perfil-1.html" class="btn btn-secondary">
+          <span aria-hidden="true">&larr;</span>
+          <span>Anterior (Alex Rivera)</span>
+        </a>
+
+        <div class="profile-nav-buttons">
+          <a href="index.html" class="btn btn-secondary">
+            <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+            <span>Portada</span>
+          </a>
+          <a href="perfil-3.html" class="btn btn-primary">
+            <span>Siguiente (Lucas Benítez)</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Equipo DevCore. Perfil 2: Sofía Martínez.</p>
+        <p><a href="index.html">Inicio</a> • <a href="bitacora.html">Bitácora</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/perfiles.js"></script>
+</body>
+</html>
+

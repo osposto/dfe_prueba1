@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TP1 - Desarrollo de Sistemas Web Front End 2026. Portal del equipo de desarrollo, perfiles profesionales y bitácora técnica.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Equipo DevCore | TP1 Desarrollo Web Front End</title>
+  
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Preconexión a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL Y NAVEGACIÓN -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Ir a la página principal de DevCore">
+        <span class="brand-badge">TP1</span>
+        <span>DevCore</span>
+      </a>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="bitacora.html" class="nav-link">
+              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Bitácora</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- SECCIÓN HERO -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-tag">
+          <span class="badge badge-emerald">Tecnicatura Superior 2026</span>
+          <span class="badge">Front End Systems</span>
+        </div>
+        <h1 id="hero-heading" class="hero-title">Construyendo la Web Moderna y Accesible</h1>
+        <p class="hero-description">
+          Somos el equipo <strong>DevCore</strong>. Desarrollamos interfaces web rápidas, semánticas y centradas en el usuario utilizando HTML5 moderno, CSS3 nativo y JavaScript Vanilla.
+        </p>
+      </section>
+
+      <!-- BUSCADOR Y FILTRO EN VIVO -->
+      <section class="filter-section" aria-label="Buscador y filtro de integrantes por habilidades">
+        <div class="search-box">
+          <img src="img/icons/search.svg" alt="" class="search-icon" aria-hidden="true">
+          <input 
+            type="search" 
+            id="skillSearch" 
+            class="search-input" 
+            placeholder="Buscar integrante por habilidad (ej. CSS, JavaScript, Accesibilidad, Grid, Git)..."
+            aria-label="Buscar integrantes por habilidad o tecnología"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="filter-tags-row">
+          <span class="filter-label">Filtros rápidos:</span>
+          <button type="button" class="quick-filter-btn" data-filter="all">Todos</button>
+          <button type="button" class="quick-filter-btn" data-filter="HTML5">HTML5</button>
+          <button type="button" class="quick-filter-btn" data-filter="CSS3">CSS3</button>
+          <button type="button" class="quick-filter-btn" data-filter="JavaScript">JavaScript</button>
+          <button type="button" class="quick-filter-btn" data-filter="Accesibilidad">Accesibilidad</button>
+          <button type="button" class="quick-filter-btn" data-filter="Responsive">Responsive</button>
+          <button type="button" class="quick-filter-btn" data-filter="Git">Git</button>
+        </div>
+
+        <div id="filterStatus" class="filter-status" aria-live="polite">
+          Mostrando 4 de 4 integrantes
+        </div>
+      </section>
+
+      <!-- CATÁLOGO / GRID DE INTEGRANTES -->
+      <section aria-labelledby="team-heading">
+        <h2 id="team-heading" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Catálogo de Integrantes del Equipo</h2>
+        
+        <div class="team-grid" id="teamGrid">
+          
+          <!-- TARJETA 1 -->
+          <article class="card member-card" data-name="Alex Rivera" data-skills="HTML5, CSS3, CSS Grid, Flexbox, UI Design, Mobile First, Figma">
+            <div>
+              <div class="member-header">
+                <img src="img/avatares/avatar-1.svg" alt="Avatar ilustrado de Alex Rivera" class="member-avatar">
+                <div class="member-info">
+                  <h3>Alex Rivera</h3>
+                  <p class="member-role">Frontend & UI Specialist</p>
+                  <p class="member-location">Buenos Aires • 24 años</p>
+                </div>
+              </div>
+              
+              <div class="member-skills">
+                <p class="member-skills-title">Habilidades clave</p>
+                <ul class="skills-badge-list">
+                  <li><span class="badge">CSS Grid</span></li>
+                  <li><span class="badge">Flexbox</span></li>
+                  <li><span class="badge">UI Design</span></li>
+                  <li><span class="badge">Mobile First</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="perfil-1.html" class="btn btn-secondary btn-sm" aria-label="Ver perfil completo de Alex Rivera">
+              <span>Ver Perfil Completo</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- TARJETA 2 -->
+          <article class="card member-card" data-name="Sofía Martínez" data-skills="JavaScript, ES6+, Web APIs, DOM Manipulation, Clean Code, JSON, Git">
+            <div>
+              <div class="member-header">
+                <img src="img/avatares/avatar-2.svg" alt="Avatar ilustrado de Sofía Martínez" class="member-avatar">
+                <div class="member-info">
+                  <h3>Sofía Martínez</h3>
+                  <p class="member-role">JavaScript Developer</p>
+                  <p class="member-location">Córdoba • 26 años</p>
+                </div>
+              </div>
+              
+              <div class="member-skills">
+                <p class="member-skills-title">Habilidades clave</p>
+                <ul class="skills-badge-list">
+                  <li><span class="badge badge-emerald">JavaScript</span></li>
+                  <li><span class="badge badge-emerald">ES6+</span></li>
+                  <li><span class="badge badge-emerald">Web APIs</span></li>
+                  <li><span class="badge badge-emerald">DOM Scripting</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="perfil-2.html" class="btn btn-secondary btn-sm" aria-label="Ver perfil completo de Sofía Martínez">
+              <span>Ver Perfil Completo</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- TARJETA 3 -->
+          <article class="card member-card" data-name="Lucas Benítez" data-skills="HTML5 Semántico, CSS3, Responsive, CSS Variables, SEO, Performance, Git">
+            <div>
+              <div class="member-header">
+                <img src="img/avatares/avatar-3.svg" alt="Avatar ilustrado de Lucas Benítez" class="member-avatar">
+                <div class="member-info">
+                  <h3>Lucas Benítez</h3>
+                  <p class="member-role">Layout & SEO Architect</p>
+                  <p class="member-location">Rosario • 25 años</p>
+                </div>
+              </div>
+              
+              <div class="member-skills">
+                <p class="member-skills-title">Habilidades clave</p>
+                <ul class="skills-badge-list">
+                  <li><span class="badge badge-purple">HTML5 Semántico</span></li>
+                  <li><span class="badge badge-purple">Responsive</span></li>
+                  <li><span class="badge badge-purple">Variables CSS</span></li>
+                  <li><span class="badge badge-purple">SEO Técnico</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="perfil-3.html" class="btn btn-secondary btn-sm" aria-label="Ver perfil completo de Lucas Benítez">
+              <span>Ver Perfil Completo</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- TARJETA 4 -->
+          <article class="card member-card" data-name="Elena Gómez" data-skills="Accesibilidad, a11y, WCAG, Chrome DevTools, Testing, Performance, Web Standards">
+            <div>
+              <div class="member-header">
+                <img src="img/avatares/avatar-4.svg" alt="Avatar ilustrado de Elena Gómez" class="member-avatar">
+                <div class="member-info">
+                  <h3>Elena Gómez</h3>
+                  <p class="member-role">Accessibility & QA Engineer</p>
+                  <p class="member-location">Mendoza • 27 años</p>
+                </div>
+              </div>
+              
+              <div class="member-skills">
+                <p class="member-skills-title">Habilidades clave</p>
+                <ul class="skills-badge-list">
+                  <li><span class="badge badge-orange">Accesibilidad (a11y)</span></li>
+                  <li><span class="badge badge-orange">WCAG 2.1</span></li>
+                  <li><span class="badge badge-orange">Chrome DevTools</span></li>
+                  <li><span class="badge badge-orange">Performance</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="perfil-4.html" class="btn btn-secondary btn-sm" aria-label="Ver perfil completo de Elena Gómez">
+              <span>Ver Perfil Completo</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+        </div>
+
+        <!-- ESTADO VACÍO (SIN COINCIDENCIAS) -->
+        <div id="noResults" class="empty-state" style="display: none;">
+          <p>No se encontraron integrantes con la habilidad o término especificado.</p>
+          <button type="button" class="btn btn-secondary btn-sm" id="clearFilterBtn" style="margin-top: 1rem;">Restablecer filtros</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>DevCore • TP1 Front-End</h4>
+          <p>Proyecto académico colaborativo para la materia Desarrollo de Sistemas Web Front End 2026. Construido con estándares web modernos.</p>
+        </div>
+        
+        <div>
+          <h5 class="footer-links-title">Navegación</h5>
+          <ul class="footer-nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="bitacora.html">Bitácora de Desarrollo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-links-title">Perfiles</h5>
+          <ul class="footer-nav">
+            <li><a href="perfil-1.html">Alex Rivera</a></li>
+            <li><a href="perfil-2.html">Sofía Martínez</a></li>
+            <li><a href="perfil-3.html">Lucas Benítez</a></li>
+            <li><a href="perfil-4.html">Elena Gómez</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Equipo DevCore. Todos los derechos reservados.</p>
+        <p>HTML5 • CSS3 • JavaScript ES6+ Vanilla</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+

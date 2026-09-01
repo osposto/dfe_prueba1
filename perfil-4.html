@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil profesional de Elena Gómez - Accessibility & QA Engineer. TP1 Desarrollo Web Front End 2026.">
+  <meta name="theme-color" content="#0F172A">
+  <title>Perfil: Elena Gómez | DevCore</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Ir a la página principal de DevCore">
+        <span class="brand-badge">TP1</span>
+        <span>DevCore</span>
+      </a>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">
+              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="bitacora.html" class="nav-link">
+              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+              <span>Bitácora</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- HERO DE PERFIL -->
+      <section class="profile-hero" aria-labelledby="profile-name">
+        <div class="profile-hero-content">
+          <img src="img/avatares/avatar-4.svg" alt="Avatar oficial de Elena Gómez" class="profile-avatar-lg">
+          <div class="profile-header-details">
+            <span class="badge badge-orange">Integrante #4</span>
+            <h1 id="profile-name">Elena Gómez</h1>
+            <p class="member-role" style="color: var(--accent-orange);">Accessibility & QA Engineer</p>
+            
+            <div class="profile-meta-tags">
+              <span class="meta-item">📍 Mendoza, Argentina</span>
+              <span class="meta-item">🎂 27 años</span>
+              <span class="meta-item">💻 Enfoque: Accesibilidad Web (a11y), WCAG & Testing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIONES DE REQUISITOS (HABILIDADES, PELÍCULAS, DISCOS) -->
+      <div class="profile-grid">
+        
+        <!-- 4 HABILIDADES (LISTA DESORDENADA) -->
+        <section class="card" aria-labelledby="skills-heading">
+          <h2 id="skills-heading" class="profile-card-title">
+            <img src="img/icons/sparkles.svg" alt="" class="card-icon" style="color: var(--accent-orange);" aria-hidden="true">
+            <span>Habilidades Técnicas</span>
+          </h2>
+          <ul class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Accesibilidad Web (WCAG 2.1 AA/AAA)</strong>
+                <span>Etiquetado ARIA, navegación por teclado, focus traps y ratio de contraste.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Chrome DevTools & Audits</strong>
+                <span>Análisis con Lighthouse, inspección de árbol de accesibilidad y perfiles de memoria.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Cross-Browser Testing</strong>
+                <span>Verificación de consistencia en Firefox, Safari, Chromium y entornos móviles.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">•</span>
+              <div class="item-text">
+                <strong>Validación W3C & Buenas Prácticas</strong>
+                <span>Estandarización de código libre de advertencias y errores estructurales.</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3 PELÍCULAS FAVORITAS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="movies-heading">
+          <h2 id="movies-heading" class="profile-card-title">
+            <img src="img/icons/movie.svg" alt="" class="card-icon" style="color: var(--accent-orange);" aria-hidden="true">
+            <span>Películas Favoritas</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">1</span>
+              <div class="item-text">
+                <strong>The Truman Show</strong>
+                <span>Dir. Peter Weir (1998) • Sátira conmovedora sobre la vigilancia masiva y la búsqueda de autenticidad.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">2</span>
+              <div class="item-text">
+                <strong>Her</strong>
+                <span>Dir. Spike Jonze (2013) • Relaciones humanas en la era de la inteligencia artificial.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">3</span>
+              <div class="item-text">
+                <strong>Spider-Man: Into the Spider-Verse</strong>
+                <span>Dir. Persichetti, Ramsey, Rothman (2018) • Revolución estética en la animación visual contemporánea.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 3 DISCOS FAVORITOS (LISTA ORDENADA) -->
+        <section class="card" aria-labelledby="music-heading">
+          <h2 id="music-heading" class="profile-card-title">
+            <img src="img/icons/disc.svg" alt="" class="card-icon" style="color: var(--accent-orange);" aria-hidden="true">
+            <span>Discos Favoritos</span>
+          </h2>
+          <ol class="custom-list">
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">1</span>
+              <div class="item-text">
+                <strong>In Rainbows</strong>
+                <span>Radiohead (2007) • Calidez sonora, texturas rítmicas orgánicas y producción impecable.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">2</span>
+              <div class="item-text">
+                <strong>Melodrama</strong>
+                <span>Lorde (2017) • Pop conceptual de vanguardia con narrativas de juventud y emoción cruda.</span>
+              </div>
+            </li>
+            <li class="custom-list-item">
+              <span class="item-index" style="color: var(--accent-orange); background-color: rgba(251, 146, 60, 0.1);">3</span>
+              <div class="item-text">
+                <strong>Folklore</strong>
+                <span>Taylor Swift (2020) • Atmósferas indie-folk, piano reflexivo y composiciones acústicas.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+      </div>
+
+      <!-- INTERACCIÓN EXCLUSIVA JS (PERFIL 4): MINI TERMINAL INTERACTIVA -->
+      <section class="interactive-section" aria-labelledby="interactive-heading">
+        <div class="interactive-header">
+          <h2 id="interactive-heading">
+            <img src="img/icons/terminal.svg" alt="" class="card-icon" style="width:24px; height:24px; color:var(--accent-orange);" aria-hidden="true">
+            <span>Mini Terminal CLI Interactiva</span>
+          </h2>
+          <p class="interactive-subtitle">Escribe comandos en la consola para consultar información en tiempo real (ej. <code>help</code>, <code>skills</code>, <code>bio</code>, <code>contact</code>, <code>clear</code>):</p>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+            <span class="terminal-title">elena@devcore-terminal:~ (v1.0.4)</span>
+          </div>
+
+          <div class="terminal-body" id="terminalBody">
+            <div class="terminal-output" id="terminalHistory">
+╔══════════════════════════════════════════════════════════════╗
+║  DevCore CLI v1.0.4 - Entorno Interactivo de Elena Gómez     ║
+║  Escribe "help" para ver los comandos disponibles.           ║
+╚══════════════════════════════════════════════════════════════╝
+            </div>
+            
+            <form id="terminalForm" class="terminal-input-row" autocomplete="off">
+              <label for="cliInput" class="terminal-prompt">elena@tp1:~$</label>
+              <input type="text" id="cliInput" class="terminal-input" placeholder="escribe help o un comando..." aria-label="Línea de comandos de terminal interactiva">
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVEGACIÓN BIDIRECCIONAL -->
+      <nav class="page-navigation-footer" aria-label="Navegación entre perfiles">
+        <a href="perfil-3.html" class="btn btn-secondary">
+          <span aria-hidden="true">&larr;</span>
+          <span>Anterior (Lucas Benítez)</span>
+        </a>
+
+        <div class="profile-nav-buttons">
+          <a href="index.html" class="btn btn-secondary">
+            <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+            <span>Portada</span>
+          </a>
+          <a href="perfil-1.html" class="btn btn-primary">
+            <span>Volver a Perfil 1 (Alex Rivera)</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Equipo DevCore. Perfil 4: Elena Gómez.</p>
+        <p><a href="index.html">Inicio</a> • <a href="bitacora.html">Bitácora</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/perfiles.js"></script>
+</body>
+</html>
+
