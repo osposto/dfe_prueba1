@@ -46,11 +46,13 @@ TP1/
 ├── bitacora.html            # Bitácora cronológica de desarrollo y acuerdos
 ├── MASTER_OUTLINE.md        # Esquema maestro de requerimientos
 ├── README.md                # Documentación técnica completa
+├── audio/
+│   └── intro.mp3            # Fanfarria clásica de 9.8s (Zarathustra - Dominio Público)
 ├── css/
 │   └── styles.css           # Hoja de estilos unificada y sistema de diseño
 ├── js/
-│   ├── main.js              # Lógica de búsqueda y filtrado en tiempo real (portada)
-│   └── perfiles.js          # Lógica interactiva única para cada uno de los 4 perfiles
+│   ├── main.js              # Intro interactiva 10s, sistema dual de temas y buscador en vivo
+│   └── perfiles.js          # Sincronización de temas y lógica interactiva de perfiles
 └── img/
     ├── avatares/
     │   ├── avatar-1.svg     # Avatar ilustrado de Guillermo Escobar
@@ -107,7 +109,21 @@ TP1/
 
 ## ⚡ 6. Documentación de Funcionalidades JavaScript
 
-### 1. Portada (`js/main.js`): Buscador & Filtro en Tiempo Real
+### 1. Portada (`js/main.js`): Presentación Interactiva de 10s & Audio Sincronizado
+- **Experiencia de Bienvenida (≤ 10s):** En la primera visita, el usuario visualiza una introducción cinematográfica basada en la fanfarria de Richard Strauss (*Also sprach Zarathustra*), con iluminación de amanecer cósmico y ondas de choque sincronizadas con los timbales.
+- **Autoplay & Permisos:** Cumple rigurosamente las políticas de los navegadores mediante un diálogo inicial accesible con consentimiento previo para reproducir sonido.
+- **Respaldo Offline (Web Audio API):** Si el archivo `audio/intro.mp3` no pudiera cargarse, un sintetizador nativo de osciladores en tiempo real reproduce la secuencia orquestal con latencia cero y sin dependencias externas.
+- **Control de Usuario y Accesibilidad:** Botón de salto visible con indicador de atajo <kbd>Esc</kbd>, barra de progreso con cuenta regresiva y desvanecimiento de volumen progresivo (*fade-out* en 350ms).
+- **Persistencia Inteligente (`localStorage`):** Al finalizar o saltar, se guarda `devcore_ha_visto_intro = true`. En visitas recurrentes o recargas, el sitio carga **instantáneamente en Modo Formal sin interrupciones**.
+- **Repetición a Demanda:** Botón permanente `[ 🎬 Ver Intro ]` en la barra de navegación para evaluar o revivir la experiencia cuando se desee.
+
+### 2. Sistema Dual de Temas: Modo Formal vs. Modo Dinámico
+- **Conmutador de Tema (`#btnToggleTheme`):** Accesible desde todas las páginas (`index.html`, perfiles y `bitacora.html`).
+- **Modo Formal (Por defecto en visitas recurrentes):** Estética sobria, paleta Slate/Navy neutra, bordes refinados y máxima legibilidad institucional.
+- **Modo Dinámico:** Estética de alta energía, fondos con gradientes radiales cósmicos, acentos neón (*Cyan*, *Magenta*, *Solar Gold*) y resplandores interactivos.
+- **Persistencia Global:** La preferencia se almacena en `localStorage` bajo la clave `devcore_tema_preferido` y se sincroniza entre todas las vistas.
+
+### 3. Portada (`js/main.js`): Buscador & Filtro en Tiempo Real
 Permite escribir en el campo de búsqueda o seleccionar botones rápidos de habilidades (ej. `HTML5`, `JavaScript`, `Accesibilidad`, `CSS3`).
 - **Normalización:** Soporta búsquedas sin distinción de mayúsculas ni tildes.
 - **Feedback Accesible:** El elemento `#filterStatus` cuenta con `aria-live="polite"` para comunicar en tiempo real a lectores de pantalla el número de coincidencias obtenidas.

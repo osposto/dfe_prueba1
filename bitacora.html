@@ -37,6 +37,18 @@
           </li>
         </ul>
       </nav>
+
+      <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
+      <div class="header-actions">
+        <a href="index.html?intro=true" class="btn-intro-replay" title="Ver presentación interactiva de 10 segundos" aria-label="Ver presentación interactiva">
+          <span class="btn-icon" aria-hidden="true">🎬</span>
+          <span class="btn-text">Ver Intro</span>
+        </a>
+        <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
+          <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
+          <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -215,6 +227,36 @@
             </div>
           </article>
 
+          <!-- ENTRADA 6: EXPERIENCIA DE BIENVENIDA (10s), AUDIO Y SISTEMA DUAL DE TEMAS -->
+          <article class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="card">
+              <div class="timeline-date">FASE 6 • EXPERIENCIA DE BIENVENIDA & SISTEMA DUAL</div>
+              <h2 class="timeline-title">6. Introducción Cinematográfica de 10s con Audio y Conmutador de Temas (Formal vs. Dinámico)</h2>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Decisiones Tomadas</div>
+                <p>
+                  Diseñamos una experiencia introductoria de alto impacto visual y sonoro (≤ 10s) inspirada en la fanfarria de <em>Also sprach Zarathustra</em> (Richard Strauss, obra de dominio público) y el amanecer cósmico. Se estructuró un <strong>Sistema Dual de Temas</strong>: el <em>Modo Dinámico</em> (paleta vibrante neón, degradados radiales y energía visual) y el <em>Modo Formal</em> (estética sobria institucional en escala Slate/Navy para evaluación técnica). La primera visita ofrece la experiencia inmersiva y, tras completarse o saltarse, el sitio guarda el estado en <code>localStorage</code> para cargar de forma inmediata en las visitas subsiguientes. Se añadió un botón permanente <code>[ 🎬 Ver Intro ]</code> y un selector de temas en la cabecera.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Dificultades Encontradas</div>
+                <p>
+                  Las políticas de seguridad y autoplay de los navegadores bloquean la reproducción automática de audio sin un gesto explícito del usuario. Asimismo, era imperativo evitar que una animación cinematográfica se tornara molesta o inaccesible para los revisores en visitas recurrentes.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Implementamos un diálogo inicial accesible que solicita la autorización para reproducir sonido, satisfaciendo el estándar de interacción del navegador. Creamos un motor de audio híbrido con archivo MP3 liviano (154 KB) y respaldo nativo con la <strong>Web Audio API</strong> para sintetizar la fanfarria orquestal en tiempo real si el archivo no está disponible. Se integró una barra de progreso visual de 10s, atajo con la tecla <kbd>Esc</kbd> con desvanecimiento de volumen (*fade-out* gradual en 350ms) y salto automático directo para visitas recurrentes mediante <code>localStorage</code>.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -271,6 +313,43 @@
     </div>
   </footer>
 
+  <!-- Sincronización del Tema (Formal vs Dinámico) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY_THEME = 'devcore_tema_preferido';
+      const btnToggleTheme = document.getElementById('btnToggleTheme');
+      const themeToggleIcon = document.getElementById('themeToggleIcon');
+      const themeToggleText = document.getElementById('themeToggleText');
+
+      const aplicarTema = (tema) => {
+        document.body.setAttribute('data-theme', tema);
+        localStorage.setItem(STORAGE_KEY_THEME, tema);
+
+        if (btnToggleTheme && themeToggleText && themeToggleIcon) {
+          if (tema === 'dinamico') {
+            themeToggleIcon.textContent = '👔';
+            themeToggleText.textContent = 'Modo Formal';
+            btnToggleTheme.setAttribute('title', 'Cambiar a Modo Formal (sobrio y académico)');
+          } else {
+            themeToggleIcon.textContent = '🎨';
+            themeToggleText.textContent = 'Modo Dinámico';
+            btnToggleTheme.setAttribute('title', 'Cambiar a Modo Dinámico (colorido y vibrante)');
+          }
+        }
+      };
+
+      const temaGuardado = localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
+      aplicarTema(temaGuardado);
+
+      if (btnToggleTheme) {
+        btnToggleTheme.addEventListener('click', () => {
+          const temaActual = document.body.getAttribute('data-theme') || 'formal';
+          const nuevoTema = temaActual === 'dinamico' ? 'formal' : 'dinamico';
+          aplicarTema(nuevoTema);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
 

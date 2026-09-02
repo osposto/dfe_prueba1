@@ -16,6 +16,58 @@
 </head>
 <body>
 
+  <!-- =========================================================================
+       OVERLAY CINEMATOGRÁFICO DE INTRODUCCIÓN (MÁXIMO 10 SEGUNDOS)
+       ========================================================================= -->
+  <aside id="introOverlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Presentación introductoria de DevCore" aria-hidden="true">
+    
+    <!-- Fondo animado con estrellas, halo solar y ondas de choque -->
+    <div class="intro-backdrop" aria-hidden="true">
+      <div class="intro-stars"></div>
+      <div class="intro-sun-glow"></div>
+      <div class="intro-shockwave" id="introShockwave"></div>
+    </div>
+
+    <!-- 1. TARJETA INICIAL DE AUTORIZACIÓN / ELECCIÓN (Cumple Autoplay y Accesibilidad) -->
+    <div id="introPromptCard" class="intro-prompt-card">
+      <div class="prompt-badge">⚡ Experiencia DevCore 2026</div>
+      <h2 class="prompt-title">¿Deseas iniciar con efectos visuales y sonido?</h2>
+      <p class="prompt-desc">
+        Presentación interactiva completa con la fanfarria de Richard Strauss (<em>Also sprach Zarathustra</em>) y timbales orquestales. Puedes omitirla o saltarla cuando desees con la tecla <kbd>Esc</kbd>.
+      </p>
+      <div class="prompt-actions">
+        <button id="btnStartIntro" class="btn-prompt-start">
+          <span class="btn-icon" aria-hidden="true">🔊</span>
+          <span>Iniciar Experiencia Completa</span>
+        </button>
+        <button id="btnSkipDirect" class="btn-prompt-skip">
+          <span class="btn-icon" aria-hidden="true">👔</span>
+          <span>Entrar directo (Modo Formal)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. ESCENARIO DE ANIMACIÓN CINEMATOGRÁFICA (Fondo Negro Minimalista) -->
+    <div id="introStage" class="intro-stage" hidden>
+      <!-- Único control visible: Botón de salto accesible -->
+      <button id="btnSkipIntro" class="btn-skip-intro" aria-label="Saltar introducción y entrar al sitio">
+        <span>Saltar Intro</span>
+        <kbd aria-hidden="true">Esc</kbd>
+      </button>
+
+      <!-- Nombre del Grupo (Funde de 0 a 100% entre el segundo 6 y el segundo 12) -->
+      <div class="intro-stage-center">
+        <div id="introGroupName" class="intro-group-hero">
+          <span class="intro-group-sub">EQUIPO 2</span>
+          <h1 class="intro-group-title">alfa omega</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Elemento de Audio Nivelado -->
+    <audio id="introAudio" src="audio/Zaratustra.mp3" preload="auto"></audio>
+  </aside>
+
   <!-- CABECERA PRINCIPAL Y NAVEGACIÓN -->
   <header class="site-header">
     <div class="container header-inner">
@@ -40,11 +92,23 @@
           </li>
         </ul>
       </nav>
+
+      <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
+      <div class="header-actions">
+        <button id="btnReplayIntro" class="btn-intro-replay" title="Ver presentación interactiva de 10 segundos" aria-label="Ver presentación interactiva">
+          <span class="btn-icon" aria-hidden="true">🎬</span>
+          <span class="btn-text">Ver Intro</span>
+        </button>
+        <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
+          <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
+          <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-content">
+  <main class="main-content" id="mainContent" tabindex="-1">
     <div class="container">
       
       <!-- SECCIÓN HERO -->

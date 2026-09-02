@@ -2,18 +2,435 @@
  * ==========================================================================
  * TP1: Desarrollo de Sistemas Web Front End (2026)
  * Script Principal (Portada): js/main.js
- * Funcionalidad: 
- *   - Buscador interactivo y filtrado en tiempo real de habilidades
- *   - Efecto 3D Tilt dinámico y Spotlight en tarjetas al desplazar el mouse
- *   - Resplandor ambiental interactivo que sigue el cursor en la cabecera
+ * Funcionalidades:
+ *   1. Presentación interactiva de 10 segundos con audio y efectos (Zarathustra)
+ *   2. Sistema dual de temas (Modo Dinámico vs Modo Formal) y localStorage
+ *   3. Buscador interactivo y filtrado en tiempo real de habilidades
+ *   4. Efecto 3D Tilt dinámico y Spotlight en tarjetas al mover el cursor
  * ==========================================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* --------------------------------------------------------------------------
-     1. BUSCADOR Y FILTRADO DINÁMICO DE INTEGRANTES
+     1. GESTOR DE INTRODUCCIÓN (10 SEGUNDOS) Y SISTEMA DUAL DE TEMAS
      -------------------------------------------------------------------------- */
+  const STORAGE_KEY_INTRO = 'devcore_ha_visto_intro';
+  const STORAGE_KEY_THEME = 'devcore_tema_preferido';
+
+  const introOverlay = document.getElementById('introOverlay');
+  const introPromptCard = document.getElementById('introPromptCard');
+  const introStage = document.getElementById('introStage');
+  const btnStartIntro = document.getElementById('btnStartIntro');
+  const btnSkipDirect = document.getElementById('btnSkipDirect');
+  const btnSkipIntro = document.getElementById('btnSkipIntro');
+  const introProgressBar = document.getElementById('introProgressBar');
+  const introTimerCount = document.getElementById('introTimerCount');
+  const introGroupName = document.getElementById('introGroupName');
+  const introAudio = document.getElementById('introAudio');
+
+  const btnReplayIntro = document.getElementById('btnReplayIntro');
+  const btnToggleTheme = document.getElementById('btnToggleTheme');
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+  const themeToggleText = document.getElementById('themeToggleText');
+  const mainContent = document.getElementById('mainContent');
+
+  let introAnimId = null;
+  let synthAudioCtx = null;
+  let synthMasterGain = null;
+  let introActiva = false;
+
+  // Parámetros URL para testing rápido (?intro=true o ?theme=dinamico)
+  const urlParams = new URLSearchParams(window.location.search);
+  const forzarIntro = urlParams.get('intro') === 'true' || urlParams.get('intro') === '1';
+  const temaUrl = urlParams.get('theme');
+
+  // A. Conmutador de Temas (Formal vs Dinámico)
+  const aplicarTema = (tema) => {
+    document.body.setAttribute('data-theme', tema);
+    localStorage.setItem(STORAGE_KEY_THEME, tema);
+
+    if (btnToggleTheme && themeToggleText && themeToggleIcon) {
+      if (tema === 'dinamico') {
+        themeToggleIcon.textContent = '👔';
+        themeToggleText.textContent = 'Modo Formal';
+        btnToggleTheme.setAttribute('title', 'Cambiar a Modo Formal (sobrio y académico)');
+      } else {
+        themeToggleIcon.textContent = '🎨';
+        themeToggleText.textContent = 'Modo Dinámico';
+        btnToggleTheme.setAttribute('title', 'Cambiar a Modo Dinámico (colorido y vibrante)');
+      }
+    }
+  };
+
+  // Inicializar tema: si es visita recurrente por defecto es formal, o lo guardado
+  let temaGuardado = temaUrl || localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
+  aplicarTema(temaGuardado);
+
+  if (btnToggleTheme) {
+    btnToggleTheme.addEventListener('click', () => {
+      const temaActual = document.body.getAttribute('data-theme') || 'formal';
+      const nuevoTema = temaActual === 'dinamico' ? 'formal' : 'dinamico';
+      aplicarTema(nuevoTema);
+    });
+  }
+
+  // B. Motor de Síntesis Web Audio API (Respaldo offline idéntico a Zarathustra)
+  const iniciarSintetizadorZarathustra = () => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return null;
+      synthAudioCtx = new AudioCtx();
+      synthMasterGain = synthAudioCtx.createGain();
+      synthMasterGain.gain.setValueAtTime(0.5, synthAudioCtx.currentTime);
+      synthMasterGain.connect(synthAudioCtx.destination);
+
+      const now = synthAudioCtx.currentTime;
+
+      // 1. Drone grave de órgano en Do (32.7 Hz y 65.4 Hz)
+      [32.7, 65.4, 130.8].forEach(freq => {
+        const osc = synthAudioCtx.createOscillator();
+        const g = synthAudioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, now);
+        
+        // Filtro pasa-bajos para calidez
+        const filter = synthAudioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(250, now);
+
+        g.gain.setValueAtTime(0.01, now);
+        g.gain.linearRampToValueAtTime(0.2, now + 1.2);
+        g.gain.linearRampToValueAtTime(0.01, now + 9.5);
+
+        osc.connect(filter);
+        filter.connect(g);
+        g.connect(synthMasterGain);
+        osc.start(now);
+        osc.stop(now + 9.8);
+      });
+
+      // 2. Metales de Fanfarria (Do - Sol - Do)
+      const notasFanfarria = [
+        { freq: 261.63, start: 1.2, dur: 1.1 }, // Do4
+        { freq: 392.00, start: 2.4, dur: 1.1 }, // Sol4
+        { freq: 523.25, start: 3.6, dur: 1.8 }  // Do5
+      ];
+
+      notasFanfarria.forEach(nota => {
+        const tStart = now + nota.start;
+        const tEnd = tStart + nota.dur;
+        const osc = synthAudioCtx.createOscillator();
+        const g = synthAudioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(nota.freq, tStart);
+
+        const filter = synthAudioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1400, tStart);
+
+        g.gain.setValueAtTime(0.01, tStart);
+        g.gain.linearRampToValueAtTime(0.35, tStart + 0.1);
+        g.gain.linearRampToValueAtTime(0.01, tEnd);
+
+        osc.connect(filter);
+        filter.connect(g);
+        g.connect(synthMasterGain);
+        osc.start(tStart);
+        osc.stop(tEnd + 0.1);
+      });
+
+      // 3. Timbales (Golpes con caída de afinación rápida)
+      const timbalHits = [4.8, 5.1, 5.4, 5.7, 6.0, 6.3, 6.6];
+      timbalHits.forEach((hitTime, idx) => {
+        const tStart = now + hitTime;
+        const osc = synthAudioCtx.createOscillator();
+        const g = synthAudioCtx.createGain();
+        const freqBase = idx % 2 === 0 ? 98.0 : 65.4;
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freqBase * 1.5, tStart);
+        osc.frequency.exponentialRampToValueAtTime(freqBase, tStart + 0.08);
+
+        g.gain.setValueAtTime(0.6, tStart);
+        g.gain.exponentialRampToValueAtTime(0.001, tStart + 0.4);
+
+        osc.connect(g);
+        g.connect(synthMasterGain);
+        osc.start(tStart);
+        osc.stop(tStart + 0.45);
+      });
+
+      // 4. Clímax Orquestal a pleno (6.6s a 9.8s)
+      const acordeClimax = [130.81, 196.00, 261.63, 329.63, 392.00, 523.25];
+      acordeClimax.forEach(f => {
+        const tStart = now + 6.6;
+        const osc = synthAudioCtx.createOscillator();
+        const g = synthAudioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(f, tStart);
+
+        g.gain.setValueAtTime(0.01, tStart);
+        g.gain.linearRampToValueAtTime(0.18, tStart + 0.15);
+        g.gain.linearRampToValueAtTime(0.001, tStart + 3.0);
+
+        osc.connect(g);
+        g.connect(synthMasterGain);
+        osc.start(tStart);
+        osc.stop(tStart + 3.1);
+      });
+
+      return synthMasterGain;
+    } catch (e) {
+      console.warn('Web Audio no disponible:', e);
+      return null;
+    }
+  };
+
+  // C. Atenuación suave de Audio (Fade-Out)
+  const atenuarAudio = (duracionMs = 400, callback) => {
+    let completado = false;
+    const finalizar = () => {
+      if (!completado) {
+        completado = true;
+        if (callback) callback();
+      }
+    };
+
+    // Fade-out HTML5 Audio
+    const audioParaAtenuar = introAudioActual || introAudio;
+    if (audioParaAtenuar && !audioParaAtenuar.paused) {
+      const volInicial = audioParaAtenuar.volume;
+      const startFade = performance.now();
+      const stepFade = (time) => {
+        const progress = Math.min((time - startFade) / duracionMs, 1);
+        audioParaAtenuar.volume = Math.max(0, volInicial * (1 - progress));
+        if (progress < 1) {
+          requestAnimationFrame(stepFade);
+        } else {
+          audioParaAtenuar.pause();
+          audioParaAtenuar.currentTime = 0;
+          audioParaAtenuar.volume = volInicial;
+          finalizar();
+        }
+      };
+      requestAnimationFrame(stepFade);
+    } else {
+      finalizar();
+    }
+
+    // Fade-out Web Audio Synth
+    if (synthMasterGain && synthAudioCtx) {
+      try {
+        const t = synthAudioCtx.currentTime;
+        synthMasterGain.gain.setValueAtTime(synthMasterGain.gain.value, t);
+        synthMasterGain.gain.linearRampToValueAtTime(0.001, t + duracionMs / 1000);
+        setTimeout(() => {
+          if (synthAudioCtx && synthAudioCtx.state !== 'closed') {
+            synthAudioCtx.close();
+            synthAudioCtx = null;
+          }
+        }, duracionMs + 50);
+      } catch (e) {
+        // Ignorar
+      }
+    }
+  };
+
+  // Variable para referenciar el audio que efectivamente se esté reproduciendo
+  let introAudioActual = null;
+
+  // D. Disparo y Animación de la Intro Completa con Fanfarria y Tambores
+  const arrancarIntroExperiencia = (esReplay = false) => {
+    introActiva = true;
+    if (introPromptCard) introPromptCard.style.display = 'none';
+    if (introStage) {
+      introStage.hidden = false;
+      introStage.classList.add('active');
+    }
+
+    // Reiniciar elementos visuales (Fondo negro puro, grupo invisible)
+    if (introGroupName) {
+      introGroupName.style.opacity = '0';
+      introGroupName.style.transform = 'scale(0.94)';
+    }
+
+    // Iniciar Audio: búsqueda inteligente de archivos (Zaratustra en audio/ o en raíz, o intro.mp3)
+    const rutasAudio = [
+      'audio/Zaratustra.mp3',
+      'Zaratustra.mp3',
+      'audio/zaratustra.mp3',
+      'zaratustra.mp3',
+      'audio/intro.mp3',
+      'intro.mp3'
+    ];
+
+    let duracionTotal = 18.8; // Duración completa del audio con timbales y tambores
+    let rutaIdx = 0;
+
+    const intentarReproducirRuta = () => {
+      if (rutaIdx >= rutasAudio.length) {
+        // Si ningún archivo existe o responde, recurrir al sintetizador orquestal Web Audio API
+        iniciarSintetizadorZarathustra();
+        return;
+      }
+
+      const rutaActual = rutasAudio[rutaIdx];
+      const audioObj = new Audio(rutaActual);
+      audioObj.volume = 0.75;
+
+      audioObj.addEventListener('loadedmetadata', () => {
+        if (audioObj.duration && isFinite(audioObj.duration)) {
+          duracionTotal = audioObj.duration;
+        }
+      });
+
+      // Al concluir los tambores del final de forma natural, finaliza la intro
+      audioObj.addEventListener('ended', () => {
+        finalizarIntro(false);
+      });
+
+      audioObj.play().then(() => {
+        introAudioActual = audioObj;
+      }).catch(() => {
+        rutaIdx++;
+        intentarReproducirRuta();
+      });
+    };
+
+    intentarReproducirRuta();
+
+    const startTime = performance.now();
+
+    const tick = (now) => {
+      if (!introActiva) return;
+
+      const elapsed = (now - startTime) / 1000;
+
+      // Sincronización cinematográfica exacta solicitada:
+      // - De 0 a 6 segundos: Fondo negro puro, solo visible el botón 'Saltar Intro'
+      // - De 6 a 12 segundos: Fundido progresivo del nombre del grupo (de 0% a 100%)
+      // - De 12 segundos hasta el final (~18.8s): Nombre 100% visible mientras suenan los tambores
+      if (introGroupName) {
+        if (elapsed < 6) {
+          introGroupName.style.opacity = '0';
+          introGroupName.style.transform = 'scale(0.94)';
+        } else if (elapsed >= 6 && elapsed <= 12) {
+          const fadeProgress = (elapsed - 6) / 6; // Rango exacto: 0.0 a 1.0
+          introGroupName.style.opacity = fadeProgress.toFixed(4);
+          const scale = 0.94 + (0.06 * fadeProgress);
+          introGroupName.style.transform = `scale(${scale.toFixed(4)})`;
+        } else {
+          introGroupName.style.opacity = '1';
+          introGroupName.style.transform = 'scale(1)';
+        }
+      }
+
+      // Fin de la duración total del audio
+      if (elapsed >= duracionTotal) {
+        finalizarIntro(false);
+      } else {
+        introAnimId = requestAnimationFrame(tick);
+      }
+    };
+
+    introAnimId = requestAnimationFrame(tick);
+  };
+
+  // E. Finalización / Salto de la Intro
+  const finalizarIntro = (fueSaltoManual = false) => {
+    if (!introActiva && !introOverlay) return;
+    introActiva = false;
+
+    if (introAnimId) {
+      cancelAnimationFrame(introAnimId);
+      introAnimId = null;
+    }
+
+    atenuarAudio(350, () => {
+      if (introOverlay) {
+        introOverlay.classList.add('fade-out');
+        introOverlay.setAttribute('aria-hidden', 'true');
+      }
+
+      // Al ver la intro completa se activa el Modo Dinámico para lucir el diseño;
+      // si se salta de inmediato se mantiene o pasa a Modo Formal.
+      if (!fueSaltoManual) {
+        aplicarTema('dinamico');
+      } else {
+        // Si el usuario saltó explícitamente desde la tarjeta inicial
+        const temaActual = localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
+        aplicarTema(temaActual);
+      }
+
+      localStorage.setItem(STORAGE_KEY_INTRO, 'true');
+
+      // Mover foco de forma accesible al contenido principal
+      if (mainContent) {
+        mainContent.focus();
+      }
+    });
+  };
+
+  // F. Inicialización del Flujo de Entrada (Primera Visita vs Recarga)
+  const haVistoIntro = localStorage.getItem(STORAGE_KEY_INTRO) === 'true';
+
+  if (!haVistoIntro || forzarIntro) {
+    // PRIMERA VISITA: Mostrar overlay y consultar permiso para audio
+    if (introOverlay) {
+      introOverlay.classList.remove('fade-out');
+      introOverlay.setAttribute('aria-hidden', 'false');
+      if (introPromptCard) introPromptCard.style.display = 'block';
+      if (introStage) introStage.hidden = true;
+      if (btnStartIntro) btnStartIntro.focus();
+    }
+
+    if (btnStartIntro) {
+      btnStartIntro.addEventListener('click', () => arrancarIntroExperiencia(false));
+    }
+
+    if (btnSkipDirect) {
+      btnSkipDirect.addEventListener('click', () => {
+        localStorage.setItem(STORAGE_KEY_INTRO, 'true');
+        aplicarTema('formal');
+        if (introOverlay) {
+          introOverlay.classList.add('fade-out');
+          introOverlay.setAttribute('aria-hidden', 'true');
+        }
+        if (mainContent) mainContent.focus();
+      });
+    }
+
+  } else {
+    // VISITA RECURRENTE: Entrada instantánea sin intro
+    if (introOverlay) {
+      introOverlay.classList.add('fade-out');
+      introOverlay.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  // G. Botón Saltar y Atajo de Teclado (Escape)
+  if (btnSkipIntro) {
+    btnSkipIntro.addEventListener('click', () => finalizarIntro(true));
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && introActiva) {
+      e.preventDefault();
+      finalizarIntro(true);
+    }
+  });
+
+  // H. Botón de Repetición en la Barra Superior ('Ver Intro')
+  if (btnReplayIntro) {
+    btnReplayIntro.addEventListener('click', () => {
+      if (introOverlay) {
+        introOverlay.classList.remove('fade-out');
+        introOverlay.setAttribute('aria-hidden', 'false');
+      }
+      arrancarIntroExperiencia(true);
+    });
+  }
   const searchInput = document.getElementById('skillSearch');
   const quickFilterBtns = document.querySelectorAll('.quick-filter-btn');
   const memberCards = document.querySelectorAll('.member-card');

@@ -6,17 +6,37 @@
 /* 1. IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-/* 2. VARIABLES GLOBALES (:root) */
+/* 2. VARIABLES GLOBALES Y SISTEMA DUAL DE TEMAS (:root) */
 :root {
-  /* Paleta de Colores - Dark Theme Sobrio */
-  --bg-main: #0F172A;        /* Slate 900 */
+  /* Tipografías Globales */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Espaciados y Radios */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Transiciones */
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* ==========================================================================
+   TEMA 1: MODO FORMAL (Por defecto en visitas recurrentes / Sobrio / Académico)
+   ========================================================================== */
+body,
+body[data-theme="formal"],
+:root[data-theme="formal"] body {
+  --bg-main: #0F172A;        /* Slate 900 sobrio */
   --bg-card: #1E293B;        /* Slate 800 */
   --bg-card-hover: #273549;  /* Slate 750 */
   --bg-card-alt: #162032;    /* Slate 850 */
   --border-color: #334155;   /* Slate 700 */
-  --border-glow: rgba(56, 189, 248, 0.35);
+  --border-glow: rgba(56, 189, 248, 0.25);
 
-  /* Acentos de Color */
+  /* Acentos Institucionales */
   --accent-sky: #38BDF8;     /* Sky Blue 400 */
   --accent-sky-dark: #0284C7;
   --accent-emerald: #34D399; /* Emerald 400 */
@@ -28,22 +48,48 @@
   --text-muted: #94A3B8;     /* Slate 400 */
   --text-dim: #64748B;       /* Slate 500 */
 
-  /* Tipografías */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Espaciados y Radio */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  /* Sombras y Luces */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.15);
+  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.12);
 
-  /* Transiciones */
-  --transition-fast: 0.18s ease;
-  --transition-normal: 0.3s ease;
+  /* Decoraciones de Fondo */
+  --hero-mesh-glow: radial-gradient(circle at 50% -20%, rgba(2, 132, 199, 0.15), transparent 70%);
+  --brand-badge-bg: linear-gradient(135deg, var(--accent-sky), var(--accent-emerald));
+}
+
+/* ==========================================================================
+   TEMA 2: MODO DINÁMICO (Primera visita / Colorido / Amanecer Cósmico & Neón)
+   ========================================================================== */
+body[data-theme="dinamico"],
+:root[data-theme="dinamico"] body {
+  --bg-main: #070714;        /* Vacío cósmico profundo */
+  --bg-card: #13122c;        /* Violeta oscuro de alta gama */
+  --bg-card-hover: #1c1a40;  /* Slate púrpura interactivo */
+  --bg-card-alt: #0a091d;
+  --border-color: #34285e;   /* Borde púrpura/neón */
+  --border-glow: rgba(255, 0, 127, 0.5);
+
+  /* Acentos Vibrantes y Eléctricos */
+  --accent-sky: #00F0FF;     /* Electric Cyan */
+  --accent-sky-dark: #FF007F;/* Neon Magenta */
+  --accent-emerald: #10B981; /* Neón Mint */
+  --accent-purple: #D946EF;  /* Cyber Fuchsia */
+  --accent-orange: #FFB800;  /* Solar Gold Zarathustra */
+
+  /* Colores de Texto */
+  --text-main: #FFFFFF;
+  --text-muted: #C4C2EE;     /* Tinte suave lavanda */
+  --text-dim: #7F7BBA;
+
+  /* Sombras y Luces Neón */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px rgba(255, 0, 127, 0.18);
+  --shadow-glow: 0 0 35px rgba(255, 0, 127, 0.35);
+
+  /* Decoraciones de Fondo Vibrantes */
+  --hero-mesh-glow: radial-gradient(circle at 50% -10%, rgba(255, 0, 127, 0.25), rgba(0, 240, 255, 0.18), transparent 70%);
+  --brand-badge-bg: linear-gradient(135deg, #FF007F, #FFB800);
 }
 
 /* 3. RESET CSS & CONFIGURACIÓN BASE */
@@ -187,7 +233,60 @@ ul, ol {
   height: 18px;
 }
 
-/* 6. COMPONENTES: BOTONES Y BADGES */
+/* Acciones de la Cabecera: Ver Intro y Conmutador de Tema */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-intro-replay,
+.btn-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-intro-replay:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-theme-toggle:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 12px rgba(217, 70, 239, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-intro-replay:focus-visible,
+.btn-theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-sky);
+  outline-offset: 2px;
+}
+
+body[data-theme="dinamico"] .site-header {
+  background-color: rgba(7, 7, 20, 0.94);
+  border-bottom-color: var(--border-color);
+}
+
+body[data-theme="dinamico"] .brand-badge {
+  background: var(--brand-badge-bg);
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1179,6 +1278,337 @@ ul, ol {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* ==========================================================================
+   16. INTRODUCCIÓN CINEMATOGRÁFICA INTERACTIVA (10 SEGUNDOS)
+   ========================================================================== */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #000000 !important;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Fondo Negro Minimalista y Puro */
+.intro-backdrop {
+  display: none !important;
+}
+
+.intro-stars {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 90px 40px, #FFB800, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, #00F0FF, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 230px 190px, #ffffff, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  opacity: 0.6;
+  animation: starsTwinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes starsTwinkle {
+  0% { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.02); }
+}
+
+.intro-sun-glow {
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140vw;
+  height: 70vh;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 184, 0, 0.45) 0%, rgba(255, 0, 127, 0.3) 30%, rgba(0, 240, 255, 0.15) 60%, transparent 80%);
+  filter: blur(50px);
+  opacity: 0.3;
+  transition: all 3s ease;
+}
+
+.intro-stage.active .intro-sun-glow {
+  opacity: 0.9;
+  transform: translateX(-50%) translateY(-10%);
+}
+
+.intro-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 240, 255, 0.8);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-shockwave.pulse {
+  animation: shockwaveBoom 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes shockwaveBoom {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+/* 1. Tarjeta Inicial de Consulta y Permiso */
+.intro-prompt-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(19, 18, 44, 0.85);
+  border: 1px solid rgba(255, 0, 127, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 0, 127, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  max-width: 540px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.prompt-badge {
+  display: inline-block;
+  background: rgba(255, 0, 127, 0.15);
+  border: 1px solid rgba(255, 0, 127, 0.5);
+  color: #FF007F;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.prompt-title {
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  background: linear-gradient(135deg, #FFFFFF 30%, #FFB800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.prompt-desc {
+  font-size: 0.95rem;
+  color: #CBD5E1;
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+}
+
+.prompt-desc strong {
+  color: #FFB800;
+}
+
+.prompt-desc kbd {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  .prompt-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.btn-prompt-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #FF007F 0%, #FF6B00 50%, #FFB800 100%);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.45);
+  transition: all var(--transition-fast);
+}
+
+.btn-prompt-start:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(255, 0, 127, 0.65);
+}
+
+.btn-prompt-skip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #94A3B8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-prompt-skip:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 2. Escenario de Animación Cinematográfica (Fondo Negro Minimalista) */
+.intro-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #000000;
+}
+
+.btn-skip-intro {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all var(--transition-fast);
+  z-index: 50;
+}
+
+.btn-skip-intro kbd {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-skip-intro:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.intro-stage-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Nombre del Grupo: Fundido suave controlado por JS de segundo 6 a 12 */
+.intro-group-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.94);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.intro-group-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: #94A3B8;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.intro-group-title {
+  font-size: clamp(3.5rem, 15vw, 9rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: #FFFFFF;
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.45), 0 0 100px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   ESTILOS COMPLEMENTARIOS PARA MODO DINÁMICO
+   ========================================================================== */
+body[data-theme="dinamico"] .hero-title {
+  background: linear-gradient(135deg, #FFFFFF 40%, #00F0FF 75%, #FF007F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body[data-theme="dinamico"] .card:hover,
+body[data-theme="dinamico"] .member-card:hover {
+  border-color: rgba(255, 0, 127, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 0, 127, 0.25), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+body[data-theme="dinamico"] .quick-filter-btn.active {
+  background: linear-gradient(135deg, #FF007F, #FFB800);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+}
+
+body[data-theme="dinamico"] .badge-emerald {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #10B981;
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 /* 17. ACCESIBILIDAD: PREFERS-REDUCED-MOTION */

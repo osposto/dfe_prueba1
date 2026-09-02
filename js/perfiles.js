@@ -445,4 +445,40 @@ donde cualquier usuario pueda navegar de forma intuitiva, rápida y sin barreras
     });
   }
 
+  /* --------------------------------------------------------------------------
+     5. SINCRONIZACIÓN DEL SISTEMA DUAL DE TEMAS (Formal vs Dinámico)
+     -------------------------------------------------------------------------- */
+  const STORAGE_KEY_THEME = 'devcore_tema_preferido';
+  const btnToggleTheme = document.getElementById('btnToggleTheme');
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+  const themeToggleText = document.getElementById('themeToggleText');
+
+  const aplicarTema = (tema) => {
+    document.body.setAttribute('data-theme', tema);
+    localStorage.setItem(STORAGE_KEY_THEME, tema);
+
+    if (btnToggleTheme && themeToggleText && themeToggleIcon) {
+      if (tema === 'dinamico') {
+        themeToggleIcon.textContent = '👔';
+        themeToggleText.textContent = 'Modo Formal';
+        btnToggleTheme.setAttribute('title', 'Cambiar a Modo Formal (sobrio y académico)');
+      } else {
+        themeToggleIcon.textContent = '🎨';
+        themeToggleText.textContent = 'Modo Dinámico';
+        btnToggleTheme.setAttribute('title', 'Cambiar a Modo Dinámico (colorido y vibrante)');
+      }
+    }
+  };
+
+  const temaGuardado = localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
+  aplicarTema(temaGuardado);
+
+  if (btnToggleTheme) {
+    btnToggleTheme.addEventListener('click', () => {
+      const temaActual = document.body.getAttribute('data-theme') || 'formal';
+      const nuevoTema = temaActual === 'dinamico' ? 'formal' : 'dinamico';
+      aplicarTema(nuevoTema);
+    });
+  }
+
 });
