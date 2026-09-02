@@ -47,12 +47,13 @@ TP1/
 ├── MASTER_OUTLINE.md        # Esquema maestro de requerimientos
 ├── README.md                # Documentación técnica completa
 ├── audio/
-│   └── intro.mp3            # Fanfarria clásica de 9.8s (Zarathustra - Dominio Público)
+│   ├── Zaratustra.mp3       # Fanfarria completa con timbales y tambores (18.8s)
+│   └── intro.mp3            # Pista sintética de respaldo (Dominio Público)
 ├── css/
-│   └── styles.css           # Hoja de estilos unificada y sistema de diseño
+│   └── styles.css           # Hoja de estilos unificada, menú responsivo y temas
 ├── js/
-│   ├── main.js              # Intro interactiva 10s, sistema dual de temas y buscador en vivo
-│   └── perfiles.js          # Sincronización de temas y lógica interactiva de perfiles
+│   ├── main.js              # Intro interactiva, menú móvil, buscador en vivo y temas
+│   └── perfiles.js          # Menú móvil, sincronización de temas y lógica interactiva de perfiles
 └── img/
     ├── avatares/
     │   ├── avatar-1.svg     # Avatar ilustrado de Guillermo Escobar

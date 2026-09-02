@@ -19,44 +19,27 @@
   <!-- =========================================================================
        OVERLAY CINEMATOGRÁFICO DE INTRODUCCIÓN (MÁXIMO 10 SEGUNDOS)
        ========================================================================= -->
-  <aside id="introOverlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Presentación introductoria de DevCore" aria-hidden="true">
+  <aside id="introOverlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Presentación introductoria de DevCore">
     
-    <!-- Fondo animado con estrellas, halo solar y ondas de choque -->
-    <div class="intro-backdrop" aria-hidden="true">
-      <div class="intro-stars"></div>
-      <div class="intro-sun-glow"></div>
-      <div class="intro-shockwave" id="introShockwave"></div>
-    </div>
-
-    <!-- 1. TARJETA INICIAL DE AUTORIZACIÓN / ELECCIÓN (Cumple Autoplay y Accesibilidad) -->
-    <div id="introPromptCard" class="intro-prompt-card">
-      <div class="prompt-badge">⚡ Experiencia DevCore 2026</div>
-      <h2 class="prompt-title">¿Deseas iniciar con efectos visuales y sonido?</h2>
-      <p class="prompt-desc">
-        Presentación interactiva completa con la fanfarria de Richard Strauss (<em>Also sprach Zarathustra</em>) y timbales orquestales. Puedes omitirla o saltarla cuando desees con la tecla <kbd>Esc</kbd>.
-      </p>
-      <div class="prompt-actions">
-        <button id="btnStartIntro" class="btn-prompt-start">
-          <span class="btn-icon" aria-hidden="true">🔊</span>
-          <span>Iniciar Experiencia Completa</span>
-        </button>
-        <button id="btnSkipDirect" class="btn-prompt-skip">
-          <span class="btn-icon" aria-hidden="true">👔</span>
-          <span>Entrar directo (Modo Formal)</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- 2. ESCENARIO DE ANIMACIÓN CINEMATOGRÁFICA (Fondo Negro Minimalista) -->
-    <div id="introStage" class="intro-stage" hidden>
-      <!-- Único control visible: Botón de salto accesible -->
+    <!-- Escenario de Animación Cinematográfica (Fondo Negro Minimalista) -->
+    <div id="introStage" class="intro-stage">
+      <!-- Botón de salto accesible visible en todo momento -->
       <button id="btnSkipIntro" class="btn-skip-intro" aria-label="Saltar introducción y entrar al sitio">
         <span>Saltar Intro</span>
         <kbd aria-hidden="true">Esc</kbd>
       </button>
 
-      <!-- Nombre del Grupo (Funde de 0 a 100% entre el segundo 6 y el segundo 12) -->
+      <!-- Centro de la Pantalla: Botón 'Ver Intro' al cargar y Nombre del Grupo -->
       <div class="intro-stage-center">
+        <!-- Botón para iniciar la intro con sonido al recién cargar el sitio -->
+        <div id="introStartWrapper" class="intro-start-wrapper">
+          <button id="btnStartIntro" class="btn-intro-play-hero" aria-label="Reproducir presentación con música">
+            <span class="btn-icon" aria-hidden="true">🎬</span>
+            <span>Ver Intro</span>
+          </button>
+        </div>
+
+        <!-- Nombre del Grupo (Funde de 0 a 100% entre el segundo 6 y el segundo 12) -->
         <div id="introGroupName" class="intro-group-hero">
           <span class="intro-group-sub">EQUIPO 2</span>
           <h1 class="intro-group-title">alfa omega</h1>
@@ -76,33 +59,50 @@
         <span>DevCore</span>
       </a>
       
-      <nav aria-label="Navegación principal">
-        <ul class="nav-links">
-          <li>
-            <a href="index.html" class="nav-link active" aria-current="page">
-              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
-              <span>Inicio</span>
-            </a>
-          </li>
-          <li>
-            <a href="bitacora.html" class="nav-link">
-              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
-              <span>Bitácora</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <!-- Botón Hamburguesa Accesible para Móviles y Tablets -->
+      <button 
+        type="button" 
+        id="navToggle" 
+        class="nav-toggle" 
+        aria-expanded="false" 
+        aria-controls="headerMenu" 
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
 
-      <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
-      <div class="header-actions">
-        <button id="btnReplayIntro" class="btn-intro-replay" title="Ver presentación interactiva de 10 segundos" aria-label="Ver presentación interactiva">
-          <span class="btn-icon" aria-hidden="true">🎬</span>
-          <span class="btn-text">Ver Intro</span>
-        </button>
-        <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
-          <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
-          <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
-        </button>
+      <!-- Menú Desplegable Responsivo -->
+      <div id="headerMenu" class="header-menu">
+        <nav class="main-nav" aria-label="Navegación principal">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" class="nav-link active" aria-current="page">
+                <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a href="bitacora.html" class="nav-link">
+                <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+                <span>Bitácora</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
+        <div class="header-actions">
+          <button id="btnReplayIntro" class="btn-intro-replay" title="Ver presentación interactiva" aria-label="Ver presentación interactiva">
+            <span class="btn-icon" aria-hidden="true">🎬</span>
+            <span class="btn-text">Ver Intro</span>
+          </button>
+          <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
+            <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
+            <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>

@@ -21,33 +21,50 @@
         <span>DevCore</span>
       </a>
       
-      <nav aria-label="Navegación principal">
-        <ul class="nav-links">
-          <li>
-            <a href="index.html" class="nav-link">
-              <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
-              <span>Inicio</span>
-            </a>
-          </li>
-          <li>
-            <a href="bitacora.html" class="nav-link active" aria-current="page">
-              <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
-              <span>Bitácora</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <!-- Botón Hamburguesa Accesible para Móviles y Tablets -->
+      <button 
+        type="button" 
+        id="navToggle" 
+        class="nav-toggle" 
+        aria-expanded="false" 
+        aria-controls="headerMenu" 
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
 
-      <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
-      <div class="header-actions">
-        <a href="index.html?intro=true" class="btn-intro-replay" title="Ver presentación interactiva de 10 segundos" aria-label="Ver presentación interactiva">
-          <span class="btn-icon" aria-hidden="true">🎬</span>
-          <span class="btn-text">Ver Intro</span>
-        </a>
-        <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
-          <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
-          <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
-        </button>
+      <!-- Menú Desplegable Responsivo -->
+      <div id="headerMenu" class="header-menu">
+        <nav class="main-nav" aria-label="Navegación principal">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" class="nav-link">
+                <img src="img/icons/home.svg" alt="" class="nav-icon" aria-hidden="true">
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a href="bitacora.html" class="nav-link active" aria-current="page">
+                <img src="img/icons/book.svg" alt="" class="nav-icon" aria-hidden="true">
+                <span>Bitácora</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de Acción: Ver Intro y Conmutador de Tema -->
+        <div class="header-actions">
+          <a href="index.html?intro=true" class="btn-intro-replay" title="Ver presentación interactiva" aria-label="Ver presentación interactiva">
+            <span class="btn-icon" aria-hidden="true">🎬</span>
+            <span class="btn-text">Ver Intro</span>
+          </a>
+          <button id="btnToggleTheme" class="btn-theme-toggle" title="Alternar entre Modo Formal y Modo Dinámico" aria-label="Alternar diseño del sitio">
+            <span id="themeToggleIcon" class="btn-icon" aria-hidden="true">🎨</span>
+            <span id="themeToggleText" class="btn-text">Modo Dinámico</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -257,6 +274,40 @@
             </div>
           </article>
 
+          <!-- ENTRADA 7: RESPONSIVIDAD Y MENÚ MÓVIL ACCESIBLE -->
+          <article class="timeline-entry" aria-labelledby="fase-7-heading">
+            <div class="entry-meta">
+              <span class="entry-phase">Fase 7</span>
+              <time class="entry-date" datetime="2026-09-02">02 Sep 2026</time>
+              <span class="entry-author">Equipo DevCore</span>
+            </div>
+            
+            <div class="entry-body">
+              <h3 id="fase-7-heading" class="entry-title">Resolución de Desbordamiento y Menú Móvil / Tablet Accesible</h3>
+              
+              <div class="entry-section">
+                <div class="entry-section-title">Objetivos y Requerimientos</div>
+                <p>
+                  Corregir problemas de visualización en teléfonos móviles y tabletas donde el menú de navegación y los botones de acción excedían el ancho de la pantalla, provocando desbordamiento horizontal y dificultando la interacción táctil.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Desafíos Encontrados</div>
+                <p>
+                  La cabecera contenía el logotipo, dos enlaces de navegación con íconos y dos botones de acción con texto extendido (<em>Ver Intro</em> y <em>Modo Dinámico</em>). En resoluciones inferiores a 860px (smartphones y tablets verticales), la suma de anchos superaba los 530px, forzando la barra superior fuera del viewport y habilitando un scroll horizontal no deseado.
+                </p>
+              </div>
+
+              <div class="entry-section">
+                <div class="entry-section-title">Soluciones Aplicadas</div>
+                <p>
+                  Diseñamos un <strong>menú hamburguesa accesible</strong> con dimensiones táctiles óptimas (44&times;44px según WCAG 2.2 AAA). El menú se despliega verticalmente bajo la cabecera mediante una suave transición CSS con efecto de desenfoque (*backdrop-filter*). Se añadieron atributos semánticos <code>aria-expanded</code> y <code>aria-controls</code>, control de foco al abrir/cerrar, cierre automático al seleccionar un enlace o pulsar <kbd>Escape</kbd>, y bloqueo global de desbordamiento horizontal con <code>overflow-x: hidden</code> en <code>html</code> y <code>body</code>.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -313,43 +364,8 @@
     </div>
   </footer>
 
-  <!-- Sincronización del Tema (Formal vs Dinámico) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const STORAGE_KEY_THEME = 'devcore_tema_preferido';
-      const btnToggleTheme = document.getElementById('btnToggleTheme');
-      const themeToggleIcon = document.getElementById('themeToggleIcon');
-      const themeToggleText = document.getElementById('themeToggleText');
-
-      const aplicarTema = (tema) => {
-        document.body.setAttribute('data-theme', tema);
-        localStorage.setItem(STORAGE_KEY_THEME, tema);
-
-        if (btnToggleTheme && themeToggleText && themeToggleIcon) {
-          if (tema === 'dinamico') {
-            themeToggleIcon.textContent = '👔';
-            themeToggleText.textContent = 'Modo Formal';
-            btnToggleTheme.setAttribute('title', 'Cambiar a Modo Formal (sobrio y académico)');
-          } else {
-            themeToggleIcon.textContent = '🎨';
-            themeToggleText.textContent = 'Modo Dinámico';
-            btnToggleTheme.setAttribute('title', 'Cambiar a Modo Dinámico (colorido y vibrante)');
-          }
-        }
-      };
-
-      const temaGuardado = localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
-      aplicarTema(temaGuardado);
-
-      if (btnToggleTheme) {
-        btnToggleTheme.addEventListener('click', () => {
-          const temaActual = document.body.getAttribute('data-theme') || 'formal';
-          const nuevoTema = temaActual === 'dinamico' ? 'formal' : 'dinamico';
-          aplicarTema(nuevoTema);
-        });
-      }
-    });
-  </script>
+  <!-- Scripts: Sincronización de Tema y Menú Móvil -->
+  <script src="js/perfiles.js"></script>
 </body>
 </html>
 

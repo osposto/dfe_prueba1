@@ -481,4 +481,56 @@ donde cualquier usuario pueda navegar de forma intuitiva, rápida y sin barreras
     });
   }
 
+  /* --------------------------------------------------------------------------
+     6. CONTROLADOR ACCESIBLE DEL MENÚ MÓVIL Y TABLET (HAMBURGUESA)
+     -------------------------------------------------------------------------- */
+  const navToggle = document.getElementById('navToggle');
+  const headerMenu = document.getElementById('headerMenu');
+
+  if (navToggle && headerMenu) {
+    const alternarMenu = (abrir) => {
+      const estaAbierto = abrir !== undefined ? abrir : !headerMenu.classList.contains('is-open');
+      headerMenu.classList.toggle('is-open', estaAbierto);
+      navToggle.setAttribute('aria-expanded', estaAbierto ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', estaAbierto ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+      
+      if (estaAbierto) {
+        const primerFocuseable = headerMenu.querySelector('a, button');
+        if (primerFocuseable) primerFocuseable.focus();
+      }
+    };
+
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      alternarMenu();
+    });
+
+    // Cerrar al hacer clic en enlaces del menú
+    headerMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => alternarMenu(false));
+    });
+
+    // Cerrar al hacer clic fuera del menú
+    document.addEventListener('click', (e) => {
+      if (headerMenu.classList.contains('is-open') && !headerMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        alternarMenu(false);
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && headerMenu.classList.contains('is-open')) {
+        alternarMenu(false);
+        navToggle.focus();
+      }
+    });
+
+    // Cerrar al redimensionar a versión de escritorio
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 860 && headerMenu.classList.contains('is-open')) {
+        alternarMenu(false);
+      }
+    });
+  }
+
 });

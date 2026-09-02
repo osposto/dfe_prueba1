@@ -19,13 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const STORAGE_KEY_THEME = 'devcore_tema_preferido';
 
   const introOverlay = document.getElementById('introOverlay');
-  const introPromptCard = document.getElementById('introPromptCard');
   const introStage = document.getElementById('introStage');
+  const introStartWrapper = document.getElementById('introStartWrapper');
   const btnStartIntro = document.getElementById('btnStartIntro');
-  const btnSkipDirect = document.getElementById('btnSkipDirect');
   const btnSkipIntro = document.getElementById('btnSkipIntro');
-  const introProgressBar = document.getElementById('introProgressBar');
-  const introTimerCount = document.getElementById('introTimerCount');
   const introGroupName = document.getElementById('introGroupName');
   const introAudio = document.getElementById('introAudio');
 
@@ -243,7 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // D. Disparo y Animación de la Intro Completa con Fanfarria y Tambores
   const arrancarIntroExperiencia = (esReplay = false) => {
     introActiva = true;
-    if (introPromptCard) introPromptCard.style.display = 'none';
+    if (introStartWrapper) {
+      introStartWrapper.classList.add('hidden');
+      introStartWrapper.style.display = 'none';
+    }
     if (introStage) {
       introStage.hidden = false;
       introStage.classList.add('active');
@@ -358,11 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!fueSaltoManual) {
         aplicarTema('dinamico');
       } else {
-        // Si el usuario saltó explícitamente desde la tarjeta inicial
         const temaActual = localStorage.getItem(STORAGE_KEY_THEME) || 'formal';
         aplicarTema(temaActual);
       }
 
+      sessionStorage.setItem(SESSION_KEY_INTRO_SEEN, 'true');
       localStorage.setItem(STORAGE_KEY_INTRO, 'true');
 
       // Mover foco de forma accesible al contenido principal
@@ -372,61 +372,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // F. Inicialización del Flujo de Entrada (Primera Visita vs Recarga)
-  const haVistoIntro = localStorage.getItem(STORAGE_KEY_INTRO) === 'true';
+  // F. Inicialización del Flujo de Entrada al recién cargar el sitio
+  const SESSION_KEY_INTRO_SEEN = 'devcore_intro_vista_sesion';
+  const yaVistoEnSesion = sessionStorage.getItem(SESSION_KEY_INTRO_SEEN) === 'true';
 
-  if (!haVistoIntro || forzarIntro) {
-    // PRIMERA VISITA: Mostrar overlay y consultar permiso para audio
+  if (!yaVistoEnSesion || forzarIntro) {
+    // Al recién cargar el sitio: Pantalla negra con botón central 'Ver Intro' y botón 'Saltar Intro'
     if (introOverlay) {
       introOverlay.classList.remove('fade-out');
       introOverlay.setAttribute('aria-hidden', 'false');
-      if (introPromptCard) introPromptCard.style.display = 'block';
-      if (introStage) introStage.hidden = true;
-      if (btnStartIntro) btnStartIntro.focus();
     }
-
+    if (introStartWrapper) {
+      introStartWrapper.classList.remove('hidden');
+      introStartWrapper.style.display = 'flex';
+    }
+    if (introGroupName) {
+      introGroupName.style.opacity = '0';
+    }
     if (btnStartIntro) {
-      btnStartIntro.addEventListener('click', () => arrancarIntroExperiencia(false));
+      btnStartIntro.focus();
     }
-
-    if (btnSkipDirect) {
-      btnSkipDirect.addEventListener('click', () => {
-        localStorage.setItem(STORAGE_KEY_INTRO, 'true');
-        aplicarTema('formal');
-        if (introOverlay) {
-          introOverlay.classList.add('fade-out');
-          introOverlay.setAttribute('aria-hidden', 'true');
-        }
-        if (mainContent) mainContent.focus();
-      });
-    }
-
   } else {
-    // VISITA RECURRENTE: Entrada instantánea sin intro
+    // Navegación en la misma sesión: entrada directa sin intro
     if (introOverlay) {
       introOverlay.classList.add('fade-out');
       introOverlay.setAttribute('aria-hidden', 'true');
     }
   }
 
-  // G. Botón Saltar y Atajo de Teclado (Escape)
+  // 1. Clic en 'Ver Intro' (en el centro de la pantalla negra al recién cargar)
+  if (btnStartIntro) {
+    btnStartIntro.addEventListener('click', () => {
+      sessionStorage.setItem(SESSION_KEY_INTRO_SEEN, 'true');
+      localStorage.setItem(STORAGE_KEY_INTRO, 'true');
+      arrancarIntroExperiencia(false);
+    });
+  }
+
+  // 2. Clic en 'Saltar Intro' (o atajo de teclado Escape)
   if (btnSkipIntro) {
-    btnSkipIntro.addEventListener('click', () => finalizarIntro(true));
+    btnSkipIntro.addEventListener('click', () => {
+      sessionStorage.setItem(SESSION_KEY_INTRO_SEEN, 'true');
+      localStorage.setItem(STORAGE_KEY_INTRO, 'true');
+      finalizarIntro(true);
+    });
   }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && introActiva) {
+    if (e.key === 'Escape' && (introActiva || (introOverlay && !introOverlay.classList.contains('fade-out')))) {
       e.preventDefault();
+      sessionStorage.setItem(SESSION_KEY_INTRO_SEEN, 'true');
+      localStorage.setItem(STORAGE_KEY_INTRO, 'true');
       finalizarIntro(true);
     }
   });
 
-  // H. Botón de Repetición en la Barra Superior ('Ver Intro')
+  // 3. Botón de Repetición en la Barra Superior ('Ver Intro')
   if (btnReplayIntro) {
     btnReplayIntro.addEventListener('click', () => {
       if (introOverlay) {
         introOverlay.classList.remove('fade-out');
         introOverlay.setAttribute('aria-hidden', 'false');
+      }
+      if (introStartWrapper) {
+        introStartWrapper.classList.add('hidden');
+        introStartWrapper.style.display = 'none';
       }
       arrancarIntroExperiencia(true);
     });
@@ -594,6 +604,58 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+  }
+
+  /* --------------------------------------------------------------------------
+     3. CONTROLADOR ACCESIBLE DEL MENÚ MÓVIL Y TABLET (HAMBURGUESA)
+     -------------------------------------------------------------------------- */
+  const navToggle = document.getElementById('navToggle');
+  const headerMenu = document.getElementById('headerMenu');
+
+  if (navToggle && headerMenu) {
+    const alternarMenu = (abrir) => {
+      const estaAbierto = abrir !== undefined ? abrir : !headerMenu.classList.contains('is-open');
+      headerMenu.classList.toggle('is-open', estaAbierto);
+      navToggle.setAttribute('aria-expanded', estaAbierto ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', estaAbierto ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+      
+      if (estaAbierto) {
+        const primerFocuseable = headerMenu.querySelector('a, button');
+        if (primerFocuseable) primerFocuseable.focus();
+      }
+    };
+
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      alternarMenu();
+    });
+
+    // Cerrar al hacer clic en enlaces del menú
+    headerMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => alternarMenu(false));
+    });
+
+    // Cerrar al hacer clic fuera del menú
+    document.addEventListener('click', (e) => {
+      if (headerMenu.classList.contains('is-open') && !headerMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        alternarMenu(false);
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && headerMenu.classList.contains('is-open')) {
+        alternarMenu(false);
+        navToggle.focus();
+      }
+    });
+
+    // Cerrar al redimensionar a versión de escritorio
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 860 && headerMenu.classList.contains('is-open')) {
+        alternarMenu(false);
+      }
+    });
   }
 
 });
